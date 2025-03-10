@@ -76,6 +76,7 @@ function LoginPage() {
                                 }
                                 onChange={(e) => setPassword(e.target.value)}
                             />
+                            <p className="text-right text-[10px] text-[grey]">Forgot Password</p>
                             {errorField === "password" && (
                                 <span className="text-[10px] text-[red]">
                                     Password must be at least 6 characters.
