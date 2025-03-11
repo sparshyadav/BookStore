@@ -1,4 +1,3 @@
-import React from 'react'
 import Navbar from '../components/Navbar'
 import BookPageContainer from '../components/BookPageContainer'
 import Footer from '../components/Footer'
