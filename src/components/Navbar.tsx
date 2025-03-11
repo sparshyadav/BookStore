@@ -3,16 +3,16 @@ import { User, ShoppingCart, Search } from 'lucide-react';
 
 function Navbar() {
     return (
-        <div className='h-[60px] w-[100%] bg-[#A03037] flex justify-center'>
-            <div className='h-[100%] w-[80%] flex justify-between max-sm:w-[100%] max-lg:w-[90%]'>
+        <div className='h-[60px] w-[100%] bg-[#A03037] flex justify-center fixed z-100'>
+            <div className='h-[100%] w-[70%] max-w-7xl flex justify-between max-sm:w-[100%] max-lg:w-[90%]'>
                 <div className='h-[100%] w-[200px] flex items-center justify-center gap-5 max-sm:gap-2'>
                     <img src={educationImage} alt='Image Not Found' className='max-sm:h-[15px]' />
                     <p className='text-white text-[25px] max-sm:text-[18px]'>BookStore</p>
                 </div>
                 <div className='h-[100%] w-[80%] flex max-md:justify-end'>
                     <div className='h-[100%] w-[75%] flex items-center max-md:hidden'>
-                        <div className="w-[75%] h-[40px] flex items-center gap-2 rounded-[3px] pl-[5px] bg-white">
-                            <Search className="text-gray-500 w-4 h-4" />
+                        <div className="w-[75%] h-[40px] flex items-center gap-2 rounded-[3px] bg-white border pl-[10px]">
+                            <Search className="text-gray-500 w-4 h-4 !ml-4" />
                             <input
                                 type="text"
                                 placeholder="Search..."
