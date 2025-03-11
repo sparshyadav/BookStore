@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import loginImage from "../assets/logi-image.png";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import { Input } from "antd";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function LoginPage() {
     const [email, setEmail] = useState("");
@@ -12,6 +12,7 @@ function LoginPage() {
     const navigate = useNavigate();
 
     function handleSubmit() {
+        navigate('/home');
         setErrorField("");
 
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -57,7 +58,7 @@ function LoginPage() {
                                 placeholder="Enter email"
                                 value={email}
                                 status={errorField === 'email' ? 'error' : ''}
-                                onChange={(e) => setEmail(e.target.value)}
+                                onChange={(e: { target: { value: SetStateAction<string>; }; }) => setEmail(e.target.value)}
                             />
                             {errorField === "email" && (
                                 <span className="text-[10px] text-[red]">
@@ -71,12 +72,14 @@ function LoginPage() {
                                 placeholder="Enter password"
                                 value={password}
                                 status={errorField === 'password' ? 'error' : ''}
-                                iconRender={(visible) =>
+                                iconRender={(visible: unknown) =>
                                     visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
                                 }
-                                onChange={(e) => setPassword(e.target.value)}
+                                onChange={(e: { target: { value: SetStateAction<string>; }; }) => setPassword(e.target.value)}
                             />
-                            <p className="text-right text-[10px] text-[grey]">Forgot Password</p>
+                            <NavLink to={"/forgotpassword"}>
+                                <p className="text-right text-[10px] text-[grey] cursor-pointer">Forgot Password</p>
+                            </NavLink>
                             {errorField === "password" && (
                                 <span className="text-[10px] text-[red]">
                                     Password must be at least 6 characters.

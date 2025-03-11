@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import loginImage from "../assets/logi-image.png";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import { Input } from "antd";
@@ -64,10 +64,10 @@ function SignupPage() {
                             <label className="text-[12px]">Full Name: </label>
                             <Input
                                 className="w-[80%]"
-                                placeholder="Enter full name"
+                                placeholder="Enter Full Name"
                                 status={errorField === 'name' ? 'error' : ''}
                                 value={name}
-                                onChange={(e) => setName(e.target.value)}
+                                onChange={(e: { target: { value: SetStateAction<string>; }; }) => setName(e.target.value)}
                             />
                             {errorField === "name" && (
                                 <span className="text-[10px] text-[red]">
@@ -79,10 +79,10 @@ function SignupPage() {
                             <label className="text-[12px]">Email Id: </label>
                             <Input
                                 className="w-[80%]"
-                                placeholder="Enter email"
+                                placeholder="Enter Email"
                                 status={errorField === 'email' ? 'error' : ''}
                                 value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                onChange={(e: { target: { value: SetStateAction<string>; }; }) => setEmail(e.target.value)}
                             />
                             {errorField === "email" && (
                                 <span className="text-[10px] text-[red]">
@@ -93,13 +93,13 @@ function SignupPage() {
                         <div>
                             <label className="text-[12px]">Password: </label>
                             <Input.Password
-                                placeholder="Enter password"
+                                placeholder="Enter Password"
                                 status={errorField === 'password' ? 'error' : ''}
                                 value={password}
-                                iconRender={(visible) =>
+                                iconRender={(visible: unknown) =>
                                     visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
                                 }
-                                onChange={(e) => setPassword(e.target.value)}
+                                onChange={(e: { target: { value: SetStateAction<string>; }; }) => setPassword(e.target.value)}
                             />
                             {errorField === "password" && (
                                 <span className="text-[10px] text-[red]">
@@ -111,10 +111,10 @@ function SignupPage() {
                             <label className="text-[12px]">Mobile Number: </label>
                             <Input
                                 className="w-[80%]"
-                                placeholder="Enter mobile number"
+                                placeholder="Enter Mobile Number"
                                 status={errorField === 'mobile' ? 'error' : ''}
                                 value={mobile}
-                                onChange={(e) => setMobile(e.target.value)}
+                                onChange={(e: { target: { value: SetStateAction<string>; }; }) => setMobile(e.target.value)}
                             />
                             {errorField === "mobile" && (
                                 <span className="text-[10px] text-[red]">
