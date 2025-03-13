@@ -1,14 +1,14 @@
-import { render, screen} from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import LoginPage from "../pages/LoginPage";
-import "@testing-library/jest-dom"; 
+import "@testing-library/jest-dom";
 import { expect, test, vi } from "vitest";
 
-vi.mock('../utils/API', ()=>({
+vi.mock('../utils/API', () => ({
     loginUser: vi.fn()
 }))
 
-vi.mock("react-toastify", ()=>({
+vi.mock("react-toastify", () => ({
     toast: {
         success: vi.fn(),
         error: vi.fn()
@@ -35,5 +35,16 @@ test("renders login page with required elements", () => {
 
     expect(screen.getByText("Facebook")).toBeInTheDocument();
     expect(screen.getByText("Google")).toBeInTheDocument();
+});
+
+test("shows error for invalid email format", async () => {
+    setup();
+    const emailInput = screen.getByPlaceholderText("Enter email") as HTMLInputElement;
+    const loginButton = screen.getByRole("button", { name: /Login/i });
+
+    fireEvent.change(emailInput, { target: { value: "invalid-email" } });
+    fireEvent.click(loginButton);
+
+    expect(await screen.findByText("Enter a valid email address.")).toBeInTheDocument();
 });
 
