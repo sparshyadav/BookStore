@@ -1,12 +1,15 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import LoginPage from "../pages/LoginPage";
 import "@testing-library/jest-dom";
 import { expect, test, vi } from "vitest";
+import { loginUser } from "../utils/API";
+import { toast } from "react-toastify";
 
-vi.mock('../utils/API', () => ({
-    loginUser: vi.fn()
-}))
+vi.mock("../utils/API", () => ({
+    loginUser: vi.fn().mockResolvedValue({ result: { accessToken: "fakeToken123" } })
+}));
+
 
 vi.mock("react-toastify", () => ({
     toast: {
@@ -51,7 +54,7 @@ test("shows error for invalid email format", async () => {
 
 test("shows error for password less than 6 characters", async () => {
     setup();
-    
+
     const emailInput = screen.getByPlaceholderText("Enter email") as HTMLInputElement;
     const passwordInput = screen.getByPlaceholderText("Enter password") as HTMLInputElement;
     const loginButton = screen.getByRole("button", { name: /Login/i });
@@ -62,4 +65,30 @@ test("shows error for password less than 6 characters", async () => {
 
     expect(await screen.findByText("Password must be at least 6 characters.")).toBeInTheDocument();
 });
+
+test("successful login stores token and shows success toast", async () => {
+    setup();
+    const emailInput = screen.getByPlaceholderText("Enter email") as HTMLInputElement;
+    const passwordInput = screen.getByPlaceholderText("Enter password") as HTMLInputElement;
+    const loginButton = screen.getByRole("button", { name: /Login/i });
+
+    vi.mocked(loginUser).mockResolvedValue({
+        success: true,
+        message: "Login successful",
+        result: {
+            accessToken: "fakeToken123"
+        }
+    });
+
+    fireEvent.change(emailInput, { target: { value: "test@example.com" } });
+    fireEvent.change(passwordInput, { target: { value: "password123" } });
+    fireEvent.click(loginButton);
+
+    await waitFor(() => {
+        expect(loginUser).toHaveBeenCalledWith("test@example.com", "password123");
+        expect(localStorage.getItem("token")).toBe("fakeToken123");
+        expect(toast.success).toHaveBeenCalledWith("Login Successfull 🎉");
+    });
+});
+
 
