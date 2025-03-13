@@ -3,6 +3,8 @@ import loginImage from "../assets/logi-image.png";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import { Input } from "antd";
 import { NavLink, useNavigate } from "react-router-dom";
+import { loginUser } from "../utils/API";
+import { toast } from "react-toastify";
 
 function LoginPage() {
     const [email, setEmail] = useState("");
@@ -11,8 +13,7 @@ function LoginPage() {
 
     const navigate = useNavigate();
 
-    function handleSubmit() {
-        navigate('/home');
+    async function handleSubmit() {
         setErrorField("");
 
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -24,7 +25,19 @@ function LoginPage() {
             return;
         }
 
-        alert("Form submitted successfully!");
+        try {
+            const response = await loginUser(email, password);
+            console.log("Login Successful: ", response);
+
+            localStorage.setItem("token", response.result.accessToken);
+
+            toast.success("Login Successfull 🎉");
+            navigate('/home');
+        }
+        catch (error) {
+            console.log("Error while loginning :", error);
+            toast.error("Login Failed. Please Check Your Credentials");
+        }
     }
 
     return (
