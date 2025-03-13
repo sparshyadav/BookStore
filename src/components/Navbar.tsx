@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import educationImage from '../assets/education.svg'
 import { User, ShoppingCart, Search } from 'lucide-react';
 
@@ -6,7 +7,8 @@ function Navbar() {
         <div className='h-[60px] w-[100%] bg-[#A03037] flex justify-center fixed z-100'>
             <div className='h-[100%] w-[70%] max-w-7xl flex justify-between max-sm:w-[100%] max-lg:w-[90%]'>
                 <div className='h-[100%] w-[200px] flex items-center justify-center gap-5 max-sm:gap-2'>
-                    <img src={educationImage} alt='Image Not Found' className='max-sm:h-[15px]' />
+                    <NavLink to={'/orderconfirm'}>
+                        <img src={educationImage} alt='Image Not Found' className='max-sm:h-[15px]' /></NavLink>
                     <p className='text-white text-[25px] max-sm:text-[18px]'>BookStore</p>
                 </div>
                 <div className='h-[100%] w-[80%] flex max-md:justify-end'>
@@ -28,10 +30,12 @@ function Navbar() {
                             <User className="w-[25px] h-[25px] max-md:w-[22px] max-md:h-[22px] max-sm:w-[18px] max-sm:h-[18px]" />
                             <p className="text-[10px] hidden md:block">Profile</p>
                         </div>
-                        <div className='bg-[#A03037] h-[100%] w-[80px] flex flex-col justify-center items-center gap-1 text-white max-md:w-[75px] max-sm:w-[50px]'>
-                            <ShoppingCart className="w-[25px] h-[25px] max-md:w-[22px] max-md:h-[22px] max-sm:w-[18px] max-sm:h-[18px]" />
-                            <p className="text-[10px] hidden md:block">Cart</p>
-                        </div>
+                        <NavLink to={'/mycart'}>
+                            <div className='bg-[#A03037] h-[100%] w-[80px] flex flex-col justify-center items-center gap-1 text-white max-md:w-[75px] max-sm:w-[50px]'>
+                                <ShoppingCart className="w-[25px] h-[25px] max-md:w-[22px] max-md:h-[22px] max-sm:w-[18px] max-sm:h-[18px]" />
+                                <p className="text-[10px] hidden md:block">Cart</p>
+                            </div>
+                        </NavLink>
                     </div>
                 </div>
             </div>
