@@ -39,6 +39,7 @@ test("renders login page with required elements", () => {
 
 test("shows error for invalid email format", async () => {
     setup();
+
     const emailInput = screen.getByPlaceholderText("Enter email") as HTMLInputElement;
     const loginButton = screen.getByRole("button", { name: /Login/i });
 
@@ -46,5 +47,19 @@ test("shows error for invalid email format", async () => {
     fireEvent.click(loginButton);
 
     expect(await screen.findByText("Enter a valid email address.")).toBeInTheDocument();
+});
+
+test("shows error for password less than 6 characters", async () => {
+    setup();
+    
+    const emailInput = screen.getByPlaceholderText("Enter email") as HTMLInputElement;
+    const passwordInput = screen.getByPlaceholderText("Enter password") as HTMLInputElement;
+    const loginButton = screen.getByRole("button", { name: /Login/i });
+
+    fireEvent.change(emailInput, { target: { value: "test@gmail.com" } });
+    fireEvent.change(passwordInput, { target: { value: "123" } });
+    fireEvent.click(loginButton);
+
+    expect(await screen.findByText("Password must be at least 6 characters.")).toBeInTheDocument();
 });
 
