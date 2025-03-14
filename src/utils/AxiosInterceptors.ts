@@ -4,18 +4,20 @@ const axiosInstance: AxiosInstance = axios.create({
     baseURL: "https://bookstore.incubation.bridgelabz.com/bookstore_user",
 });
 
+const noAuthRoutes = ["/login", "/registration", "/get/books"];
+
 axiosInstance.interceptors.request.use(
     (config: InternalAxiosRequestConfig) => {
-        if (config.url !== "/login") {
-            const token = localStorage.getItem("token");
+        if (!noAuthRoutes.includes(config.url || "")) {
+            const tokenData = JSON.parse(localStorage.getItem("token") || "{}");
+            const token = tokenData.token;
             if (token) {
-                config.headers = config.headers ?? {}; 
                 config.headers.Authorization = `Bearer ${token}`;
             }
         }
         return config;
     },
-    (error) => Promise.reject(error) 
+    (error) => Promise.reject(error)
 );
 
 axiosInstance.interceptors.response.use(
