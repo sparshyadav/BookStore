@@ -29,7 +29,10 @@ function LoginPage() {
             const response = await loginUser(email, password);
             console.log("Login Successful: ", response);
 
-            localStorage.setItem("token", response.result.accessToken);
+            localStorage.setItem("token", JSON.stringify({
+                token: response.result.accessToken,
+                name: email.split("@")[0]
+            }));
 
             toast.success("Login Successfull 🎉");
             navigate('/home');
@@ -68,7 +71,7 @@ function LoginPage() {
                             <label className="text-[12px]">Email Id: </label>
                             <Input
                                 className={`w-[80%] ${errorField === 'email' ? 'border border-red-500' : ''}`}
-                                placeholder="Enter email"
+                                placeholder="Enter Email"
                                 value={email}
                                 status={errorField === 'email' ? 'error' : ''}
                                 onChange={(e: { target: { value: SetStateAction<string>; }; }) => setEmail(e.target.value)}
@@ -82,7 +85,7 @@ function LoginPage() {
                         <div>
                             <label className="text-[12px]">Password: </label>
                             <Input.Password
-                                placeholder="Enter password"
+                                placeholder="Enter Password"
                                 value={password}
                                 status={errorField === 'password' ? 'error' : ''}
                                 iconRender={(visible: unknown) =>
