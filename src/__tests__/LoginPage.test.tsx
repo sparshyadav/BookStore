@@ -1,10 +1,13 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { MemoryRouter, Route, Routes } from "react-router-dom";
 import LoginPage from "../pages/LoginPage";
 import "@testing-library/jest-dom";
 import { expect, test, vi } from "vitest";
 import { loginUser } from "../utils/API";
 import { toast } from "react-toastify";
+import { AxiosError } from "axios";
+import SignupPage from "../pages/SignupPage";
+import ForgotPassword from "../pages/ForgotPassword";
 
 vi.mock("../utils/API", () => ({
     loginUser: vi.fn().mockResolvedValue({ result: { accessToken: "fakeToken123" } })
@@ -29,8 +32,8 @@ const setup = () => {
 test("renders login page with required elements", () => {
     setup();
 
-    expect(screen.getByPlaceholderText("Enter email")).toBeInTheDocument();
-    expect(screen.getByPlaceholderText("Enter password")).toBeInTheDocument();
+    expect(screen.getByPlaceholderText("Enter Email")).toBeInTheDocument();
+    expect(screen.getByPlaceholderText("Enter Password")).toBeInTheDocument();
 
     expect(screen.getByRole("button", { name: /Login/i })).toBeInTheDocument();
     expect(screen.getByText("SIGNUP")).toBeInTheDocument();
@@ -43,7 +46,7 @@ test("renders login page with required elements", () => {
 test("shows error for invalid email format", async () => {
     setup();
 
-    const emailInput = screen.getByPlaceholderText("Enter email") as HTMLInputElement;
+    const emailInput = screen.getByPlaceholderText("Enter Email") as HTMLInputElement;
     const loginButton = screen.getByRole("button", { name: /Login/i });
 
     fireEvent.change(emailInput, { target: { value: "invalid-email" } });
@@ -55,8 +58,8 @@ test("shows error for invalid email format", async () => {
 test("shows error for password less than 6 characters", async () => {
     setup();
 
-    const emailInput = screen.getByPlaceholderText("Enter email") as HTMLInputElement;
-    const passwordInput = screen.getByPlaceholderText("Enter password") as HTMLInputElement;
+    const emailInput = screen.getByPlaceholderText("Enter Email") as HTMLInputElement;
+    const passwordInput = screen.getByPlaceholderText("Enter Password") as HTMLInputElement;
     const loginButton = screen.getByRole("button", { name: /Login/i });
 
     fireEvent.change(emailInput, { target: { value: "test@gmail.com" } });
@@ -68,8 +71,8 @@ test("shows error for password less than 6 characters", async () => {
 
 test("successful login stores token and shows success toast", async () => {
     setup();
-    const emailInput = screen.getByPlaceholderText("Enter email") as HTMLInputElement;
-    const passwordInput = screen.getByPlaceholderText("Enter password") as HTMLInputElement;
+    const emailInput = screen.getByPlaceholderText("Enter Email") as HTMLInputElement;
+    const passwordInput = screen.getByPlaceholderText("Enter Password") as HTMLInputElement;
     const loginButton = screen.getByRole("button", { name: /Login/i });
 
     vi.mocked(loginUser).mockResolvedValue({
@@ -86,9 +89,69 @@ test("successful login stores token and shows success toast", async () => {
 
     await waitFor(() => {
         expect(loginUser).toHaveBeenCalledWith("test@example.com", "password123");
-        expect(localStorage.getItem("token")).toBe("fakeToken123");
+        expect(JSON.parse(localStorage.getItem("token")!)).toEqual({
+            token: "fakeToken123",
+            name: "test"
+        });
         expect(toast.success).toHaveBeenCalledWith("Login Successfull 🎉");
     });
 });
 
+test("shows error toast on failed login", async () => {
+    setup();
+    const emailInput = screen.getByPlaceholderText("Enter Email") as HTMLInputElement;
+    const passwordInput = screen.getByPlaceholderText("Enter Password") as HTMLInputElement;
+    const loginButton = screen.getByRole("button", { name: /Login/i });
 
+    vi.mocked(loginUser).mockRejectedValue(
+        new AxiosError("Request failed with status code 422", "ERR_BAD_REQUEST", undefined, undefined, {
+            data: { message: "Invalid credentials" },
+            status: 422,
+            statusText: "",
+            headers: {},
+            config: {
+                headers: undefined
+            },
+        })
+    );
+
+    fireEvent.change(emailInput, { target: { value: "test@example.com" } });
+    fireEvent.change(passwordInput, { target: { value: "wrongpassword" } });
+    fireEvent.click(loginButton);
+
+    await waitFor(() => {
+        expect(toast.error).toHaveBeenCalledWith("Login Failed. Please Check Your Credentials");
+    });
+});
+
+test("navigates to signup page when SIGNUP button is clicked", () => {
+    render(
+        <MemoryRouter initialEntries={["/"]}>
+            <Routes>
+                <Route path="/" element={<LoginPage />} />
+                <Route path="/signup" element={<SignupPage />} />
+            </Routes>
+        </MemoryRouter>
+    );
+
+    const signupButton = screen.getByText("SIGNUP");
+    fireEvent.click(signupButton);
+
+    expect(screen.getByText("Signup")).toBeInTheDocument();
+});
+
+test("navigates to forgot password page", () => {
+    render(
+        <MemoryRouter initialEntries={["/"]}>
+            <Routes>
+                <Route path="/" element={<LoginPage />} />
+                <Route path="/forgotpassword" element={<ForgotPassword />} />
+            </Routes>
+        </MemoryRouter>
+    );
+
+    const forgotPasswordLink = screen.getByText(/forgot password/i);
+    fireEvent.click(forgotPasswordLink);
+
+    expect(screen.getByText(/forgot your password\?/i)).toBeInTheDocument();
+});
