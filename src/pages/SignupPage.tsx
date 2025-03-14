@@ -3,6 +3,8 @@ import loginImage from "../assets/logi-image.png";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import { Input } from "antd";
 import { useNavigate } from "react-router-dom";
+import { registerUser } from "../utils/API";
+import { toast } from "react-toastify";
 
 function SignupPage() {
     const [name, setName] = useState("");
@@ -13,7 +15,7 @@ function SignupPage() {
 
     const navigate = useNavigate();
 
-    function handleSubmit() {
+    async function handleSubmit() {
         setErrorField("");
 
         if (!/^[A-Za-z ]+$/.test(name)) {
@@ -33,7 +35,17 @@ function SignupPage() {
             return;
         }
 
-        alert("Form submitted successfully!");
+        try {
+            const response = await registerUser(email, password, mobile, name);
+            console.log("Registration Successful: ", response);
+
+            toast.success("Signup Successfull 🎉");
+            navigate('/');
+        }
+        catch (error) {
+            console.log("Error while loginning :", error);
+            toast.error("Signup Failed. Please Check Your Credentials");
+        }
     }
 
     return (
