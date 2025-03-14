@@ -8,6 +8,7 @@ import WishlistPage from "./pages/WishlistPage"
 import PleaseLoginPage from "./pages/PleaseLoginPage"
 import MyCartPage from "./pages/MyCartPage"
 import OrderConfirmPage from "./pages/OrderConfirmPage"
+import MyOrderPage from './pages/MyOrderPage';
 
 const RoutingModule = () => {
     const route = createBrowserRouter([
@@ -46,6 +47,10 @@ const RoutingModule = () => {
         {
             path: 'orderconfirm',
             element: <OrderConfirmPage />
+        },
+        {
+            path: 'myorder',
+            element: <MyOrderPage />
         }
     ]);
 
