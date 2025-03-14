@@ -1,13 +1,13 @@
 import { useState } from 'react'
-import bookImage1 from '../assets/book-image-1.png'
-import bookImage2 from '../assets/book-image-2.png'
-import bookImage3 from '../assets/book-image-large-1.png'
+import bookImage1 from '../assets/BookCover1.png'
+import bookImage2 from '../assets/bookCover2.png'
 import { Star, Dot, Heart } from 'lucide-react';
 
 function BookPageContainer() {
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);
     const [review, setReview] = useState("");
+    const [showImage1, setShowImage1] = useState(true);
     const reviews = [
         { name: "Chris King", initials: "CK", rating: 4, review: "Great book! Really helped me understand UX principles." },
         { name: "Jane Doe", initials: "JD", rating: 5, review: "Loved it! A must-read for designers and developers alike." },
@@ -34,22 +34,22 @@ function BookPageContainer() {
             <div className='w-[68%] flex justify-between max-md:w-[90%] max-md:flex-col max-md:justify-center max-md:items-center max-sm:flex-col max-sm:justify-center max-sm:items-center'>
                 <div className='w-[35%] h-[500px] flex max-md:w-[45%] max-sm:w-[90%]'>
                     <div className='w-[15%] h-[200px]'>
-                        <div className='h-[65px] w-[100%] border border-black flex justify-center items-center'>
-                            <img src={bookImage1} className='h-[62px] !p-[2px]' />
+                        <div className='h-[65px] w-[100%] border border-black flex justify-center items-center hover:cursor-pointer'>
+                            <img src={bookImage1} className='h-[62px] !p-[2px]' onClick={() => setShowImage1(true)} />
                         </div>
-                        <div className='h-[65px] w-[100%] border border-black flex justify-center items-center'>
-                            <img src={bookImage2} className='!p-[2px]' />
+                        <div className='h-[65px] w-[100%] border border-black flex justify-center items-center hover:cursor-pointer'>
+                            <img src={bookImage2} className='h-[62px] !p-[2px]' onClick={() => setShowImage1(false)} />
                         </div>
                     </div>
                     <div className='w-[85%] flex flex-col gap-2.5'>
-                        <div className='w-[100%] h-[375px] border border-[grey] flex justify-center items-center'>
-                            <img src={bookImage3} className='h-[90%]' />
+                        <div className='w-[100%] h-[375px] border border-[grey] flex justify-center items-center max-[1050px]:h-[250px]'>
+                            <img src={showImage1 ? bookImage1 : bookImage2} className='h-[90%] max-[1050px]:h-[70%]' />
                         </div>
                         <div className="w-[100%] flex flex-col lg:flex-row justify-between gap-4 lg:gap-6 lg:w-full">
-                            <button className="h-[40px] text-white rounded-[2px] w-full lg:w-[45%] bg-[#A03037] hover:bg-[#8C282E] text-sm lg:text-base">
+                            <button className="h-[40px] text-white rounded-[2px] w-full lg:w-[49%] bg-[#A03037] hover:bg-[#8C282E] text-sm lg:text-base">
                                 ADD TO BAG
                             </button>
-                            <button className="h-[40px] bg-[#333333] rounded-[2px] w-full lg:w-[45%] text-white flex justify-center items-center gap-[5px] hover:bg-[#4D4D4D] text-sm lg:text-base">
+                            <button className="h-[40px] bg-[#333333] rounded-[2px] w-full lg:w-[49%] text-white flex justify-center items-center gap-[5px] hover:bg-[#4D4D4D] text-sm lg:text-base">
                                 <Heart className='w-[18px] h-[18px]' fill='white' />
                                 <p>WISHLIST</p>
                             </button>
