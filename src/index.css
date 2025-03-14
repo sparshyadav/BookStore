@@ -8,3 +8,7 @@
   overflow-x: hidden;
   font-family: "Roboto", sans-serif;
 }
+
+.ant-pagination-item-link {
+  overflow: hidden;
+}
