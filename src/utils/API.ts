@@ -1,16 +1,9 @@
-import axiosInstance from "./AxiosInterceptors";
+import axios from 'axios';
+const BASE_URL = "https://bookstore.incubation.bridgelabz.com/bookstore_user";
 
-interface LoginResponse {
-    success: boolean;
-    message: string;
-    result: {
-        accessToken: string;
-    };
-}
-
-export const loginUser = async (email: string, password: string): Promise<LoginResponse> => {
+export const loginUser = async (email: string, password: string) => {
     try {
-        const response = await axiosInstance.post<LoginResponse>("/login", { email, password });
+        const response = await axios.post(`${BASE_URL}/login`, { email, password });
         return response.data;
     }
     catch (error) {
@@ -21,7 +14,7 @@ export const loginUser = async (email: string, password: string): Promise<LoginR
 
 export const registerUser = async (email: string, password: string, phone: string, fullName: string) => {
     try {
-        const response = await axiosInstance.post("/registration", { email, password, phone, fullName });
+        const response = await axios.post(`${BASE_URL}/registration`, { email, password, phone, fullName });
         return response.data;
     }
     catch (error) {
@@ -32,11 +25,32 @@ export const registerUser = async (email: string, password: string, phone: strin
 
 export const getAllBooks = async () => {
     try {
-        const response = await axiosInstance.get("/get/book");
+        const response = await axios.get(`${BASE_URL}/get/book`);
         return response.data;
     }
     catch (error) {
-        console.error("Registration Failed", error);
+        console.error("Fetching Books Failed", error);
         throw error;
     }
 }
+
+export const getBookReviews = async (bookId: string) => {
+    try {
+        const tokenData = JSON.parse(localStorage.getItem("token") || "null");
+        const token = tokenData?.token;
+
+        const response = await axios.get(`${BASE_URL}/get/feedback/${bookId}`, {
+            headers: {
+                Authorization: token
+            }
+        });
+
+        return response.data;
+    }
+    catch (error) {
+        console.error("Fetching Reviews Failed", error);
+        throw error;
+    }
+};
+
+
