@@ -10,6 +10,7 @@ type data = {
     price: number,
     quantity: number,
     cover: string;
+    _id: string
 }
 
 type bookProps = {
@@ -18,7 +19,7 @@ type bookProps = {
 
 function BookCard({ data }: bookProps) {
     return (
-        <NavLink to='/bookpage/1'>
+        <NavLink to={`/bookpage/${data._id}`}>
             <div className="h-[275px] w-[235px] border border-[#E2E2E2] rounded-[3px] hover:shadow-2xl transition-all duration-300 hover:border-[#C0C0C0] max-[500px]:w-[175px]">
                 <div className='h-[171px] w-[100%] bg-[#F5F5F5] flex justify-center items-center'>
                     <img src={data.cover} className='h-[135px] w-[105px]' />
