@@ -1,24 +1,52 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import bookImage1 from '../assets/BookCover1.png'
 import bookImage2 from '../assets/bookCover2.png'
 import { Star, Dot, Heart } from 'lucide-react';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../redux/store';
+import { Book, fetchBooks } from '../redux/bookSlice';
 
 function BookPageContainer() {
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);
     const [review, setReview] = useState("");
     const [showImage1, setShowImage1] = useState(true);
+    const { bookId } = useParams();
+
     const reviews = [
         { name: "Chris King", initials: "CK", rating: 4, review: "Great book! Really helped me understand UX principles." },
         { name: "Jane Doe", initials: "JD", rating: 5, review: "Loved it! A must-read for designers and developers alike." },
         { name: "Michael Smith", initials: "MS", rating: 3, review: "Good insights but could be more detailed." },
     ];
+
+    const [booksArray, setBooksArray] = useState<Book[]>([]);
+    const [bookData, setBookData] = useState<Book[]>([]);
+
+    const dispatch = useDispatch<AppDispatch>();
+    const { allBooks, status } = useSelector((state: RootState) => state.books);
+
+    useEffect(() => {
+        if (status === "idle") {
+            dispatch(fetchBooks());
+        }
+    }, [dispatch, status]);
+
+    useEffect(() => {
+        if (allBooks.length > 0) {
+            setBooksArray(allBooks);
+            setBookData(booksArray.filter((book) => book.id === bookId));
+        }
+    }, [booksArray, bookId, allBooks]);
+
+    console.log("BOOK DATA: 0", bookData);
+
     return (
         <div className='!mt-[60px] w-[100%] flex flex-col items-center !my-[35px]'>
             <nav aria-label="breadcrumb" className="w-[68%] h-[75px] flex items-center max-md:w-[90%]">
                 <ol className="flex w-full flex-wrap items-center rounded-md bg-slate-50 px-4 py-2">
                     <li className="flex gap-1 cursor-pointer items-center text-sm text-slate-500 transition-colors duration-300 hover:text-slate-800">
-                        <a href="/home">Home</a>
+                        <a href="/">Home</a>
                         <span className="pointer-events-none mx-2 text-slate-800 !mr-1">
                             /
                         </span>
