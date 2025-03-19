@@ -96,7 +96,7 @@ function FeedbackBookPage() {
                             </div>
                         </div>
                         <textarea
-                            className="w-full !mt-1 !mb-5 !p-2 outline-none h-[80%]"
+                            className="w-full !mt-1 !mb-5 !p-4 outline-none h-[80%]"
                             rows={4}
                             placeholder="Write Your Review..."
                             value={reviewComment}
