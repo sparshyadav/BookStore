@@ -38,8 +38,6 @@ export const getBookReviews = async (bookId: string | undefined) => {
     try {
         const tokenData = JSON.parse(localStorage.getItem("token") || "null");
         const token = tokenData?.token;
-        console.log("TokeNNN:::", token);
-        console.log("BOOKID:::", bookId);
 
         const response = await axios.get(`${BASE_URL}/get/feedback/${bookId}`, {
             headers: {
@@ -51,6 +49,28 @@ export const getBookReviews = async (bookId: string | undefined) => {
     }
     catch (error) {
         console.error("Fetching Reviews Failed", error);
+        throw error;
+    }
+};
+
+export const addBookReviews = async (comment: string, rating: number, bookId: string | undefined) => {
+    try {
+        const tokenData = JSON.parse(localStorage.getItem("token") || "null");
+        const token = tokenData?.token;
+
+        const response = await axios.post(`${BASE_URL}/add/feedback/${bookId}`,
+            { comment, rating },
+            {
+                headers: {
+                    "x-access-token": token,
+                    "Content-Type": "application/json"
+                }
+            }
+        );
+
+        return response.data;
+    } catch (error) {
+        console.error("Adding Reviews Failed", error);
         throw error;
     }
 };
