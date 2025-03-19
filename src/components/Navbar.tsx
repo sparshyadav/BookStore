@@ -2,19 +2,26 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import educationImage from '../assets/education.svg';
 import { User, ShoppingCart, Search, Wallet, Heart } from 'lucide-react';
+import { useDispatch } from "react-redux";
+import {  setSearchQuery } from "../redux/searchSlice";
 
 function Navbar() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+    const dispatch = useDispatch();
+    // console.log("Search Query: ", )
+
     return (
         <div className='h-[60px] w-[100%] bg-[#A03037] flex justify-center fixed z-50 overflow-visible'>
             <div className='h-[100%] w-[70%] max-w-7xl flex justify-between max-sm:w-[100%] max-lg:w-[90%] relative'>
-                <div className='h-[100%] w-[200px] flex items-center justify-center gap-5 max-sm:gap-2'>
-                    <NavLink to={'/orderconfirm'}>
-                        <img src={educationImage} alt='Image Not Found' className='max-sm:h-[15px]' />
-                    </NavLink>
-                    <p className='text-white text-[25px] max-sm:text-[18px]'>BookStore</p>
-                </div>
+                <NavLink to={'/'}>
+                    <div className='h-[100%] w-[200px] flex items-center justify-center gap-5 max-sm:gap-2 cursor-pointer'>
+                        <NavLink to={'/orderconfirm'}>
+                            <img src={educationImage} alt='Image Not Found' className='max-sm:h-[15px]' />
+                        </NavLink>
+                        <p className='text-white text-[25px] max-sm:text-[18px]'>BookStore</p>
+                    </div>
+                </NavLink>
 
                 <div className='h-[100%] w-[80%] flex max-md:justify-end'>
                     <div className='h-[100%] w-[75%] flex items-center max-md:hidden'>
@@ -23,6 +30,7 @@ function Navbar() {
                             <input
                                 type="text"
                                 placeholder="Search..."
+                                onChange={(e) => dispatch(setSearchQuery(e.target.value))}
                                 className="w-full bg-transparent outline-none px-2 placeholder-gray-400"
                             />
                         </div>
@@ -60,8 +68,8 @@ function Navbar() {
                                                             <Heart className='h-[15px] w-[15px]' />
                                                             <NavLink to="/myorder" className="px-3 py-2 text-[15px]">My Orders</NavLink>
                                                         </div>
-                                                        <NavLink to={'/'}>
-                                                            <button onClick={()=>localStorage.removeItem("token")} className='w-[125px] h-[30px] text-[#A03037] border border-[#A03037] !mt-[10px] hover:cursor-pointer hover:bg-[#B03A42] hover:text-white duration-300'>
+                                                        <NavLink to={'/login'}>
+                                                            <button onClick={() => localStorage.removeItem("token")} className='w-[125px] h-[30px] text-[#A03037] border border-[#A03037] !mt-[10px] hover:cursor-pointer hover:bg-[#B03A42] hover:text-white duration-300'>
                                                                 Logout
                                                             </button>
                                                         </NavLink>
@@ -69,7 +77,7 @@ function Navbar() {
                                                 ) : <>
                                                     <p className="text-[#0A0102] text-[18px]">Welcome, {tokenData.name}</p>
                                                     <p className="text-[#878787] text-[12px]">To access account and manage orders</p>
-                                                    <NavLink to={'/'}>
+                                                    <NavLink to={'/login'}>
                                                         <button className='w-[125px] h-[30px] text-[#A03037] border border-[#A03037] !my-[10px] hover:cursor-pointer hover:bg-[#B03A42] hover:text-white duration-300'>
                                                             Login/Signup
                                                         </button>
