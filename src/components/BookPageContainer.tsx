@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../redux/store';
 import { Book, fetchBooks } from '../redux/bookSlice';
+import { getBookReviews } from '../utils/API';
 
 function BookPageContainer() {
     const [rating, setRating] = useState(0);
@@ -14,17 +15,60 @@ function BookPageContainer() {
     const [showImage1, setShowImage1] = useState(true);
     const { bookId } = useParams();
 
-    const reviews = [
-        { name: "Chris King", initials: "CK", rating: 4, review: "Great book! Really helped me understand UX principles." },
-        { name: "Jane Doe", initials: "JD", rating: 5, review: "Loved it! A must-read for designers and developers alike." },
-        { name: "Michael Smith", initials: "MS", rating: 3, review: "Good insights but could be more detailed." },
-    ];
+    interface User {
+        _id: string;
+        fullName: string;
+    }
+
+    interface Review {
+        approveComment: boolean;
+        _id: string;
+        user_id: User;
+        product_id: string;
+        comment: string;
+        rating: number;
+        createdAt: string;
+        updatedAt: string;
+        __v: number;
+    }
+
+    interface ResponseType {
+        success: string;
+        message: string;
+        result: Review[];
+    }
+
+    const getInitials = (fullName: string) => {
+        return fullName
+            .split(" ")
+            .map(name => name[0])
+            .join("")
+            .toUpperCase();
+    };
 
     const [booksArray, setBooksArray] = useState<Book[]>([]);
     const [bookData, setBookData] = useState<Book[]>([]);
 
     const dispatch = useDispatch<AppDispatch>();
     const { allBooks, status } = useSelector((state: RootState) => state.books);
+
+    const [reviews, setReviews] = useState<ResponseType["result"]>([]);
+
+    useEffect(() => {
+        const fetchReviews = async () => {
+            try {
+                if (!bookId) return;
+
+                const response: ResponseType = await getBookReviews(bookId);
+                setReviews(response.result);
+            } catch (error) {
+                console.error("Error fetching reviews:", error);
+            }
+        };
+
+        fetchReviews();
+    }, []);
+
 
     useEffect(() => {
         if (status === "idle") {
@@ -38,8 +82,6 @@ function BookPageContainer() {
             setBookData(booksArray.filter((book) => book.id === bookId));
         }
     }, [booksArray, bookId, allBooks]);
-
-    console.log("BOOK DATA: 0", bookData);
 
     return (
         <div className='!mt-[60px] w-[100%] flex flex-col items-center !my-[35px]'>
@@ -147,10 +189,10 @@ function BookPageContainer() {
                             >
                                 <div className='flex items-center w-[100%] h-[50px] shrink-0 gap-[10px]'>
                                     <div className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-300 text-gray-700 font-bold text-lg">
-                                        {user.initials}
+                                        {getInitials(user.user_id.fullName)}
                                     </div>
                                     <div className='flex flex-col'>
-                                        <p className="font-medium text-gray-800">{user.name}</p>
+                                        <p className="font-medium text-gray-800">{user.user_id.fullName}</p>
                                         <div className="flex gap-1 mt-1">
                                             {[1, 2, 3, 4, 5].map((star) => (
                                                 <Star
@@ -162,7 +204,7 @@ function BookPageContainer() {
                                     </div>
                                 </div>
                                 <div className="flex flex-col min-w-0 !ml-[60px]">
-                                    <p className="mt-2 text-gray-700 break-words">{user.review}</p>
+                                    <p className="mt-2 text-gray-700 break-words">{user.comment}</p>
                                 </div>
                             </div>
                         ))}
@@ -174,3 +216,7 @@ function BookPageContainer() {
 }
 
 export default BookPageContainer
+
+
+
+
