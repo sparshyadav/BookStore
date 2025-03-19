@@ -98,9 +98,11 @@ export const addWishlist = async (bookId: string | undefined) => {
 };
 
 export const removeWishlist = async (bookId: string | undefined) => {
+    console.log("Getting Book Id: ", bookId);
     try {
         const tokenData = JSON.parse(localStorage.getItem("token") || "null");
         const token = tokenData?.token;
+        console.log("TOKEN: ", token);
 
         const response = await axios.delete(`${BASE_URL}/remove_wishlist_item/${bookId}`, {
             headers: {
@@ -115,4 +117,24 @@ export const removeWishlist = async (bookId: string | undefined) => {
         throw error;
     }
 };
+
+export const getWishlistItems = async () => {
+    try {
+        const tokenData = JSON.parse(localStorage.getItem("token") || "null");
+        const token = tokenData?.token;
+
+        const response = await axios.get("https://bookstore.incubation.bridgelabz.com/bookstore_user/get_wishlist_items", {
+            headers: {
+                "x-access-token": token,
+                "Content-Type": "application/json"
+            }
+        });
+
+        return response.data;
+    } catch (error) {
+        console.error("Getting Wishlist Items Failed", error);
+        throw error;
+    }
+};
+
 
