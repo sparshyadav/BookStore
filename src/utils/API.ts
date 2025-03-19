@@ -75,4 +75,44 @@ export const addBookReviews = async (comment: string, rating: number, bookId: st
     }
 };
 
+export const addWishlist = async (bookId: string | undefined) => {
+    try {
+        const tokenData = JSON.parse(localStorage.getItem("token") || "null");
+        const token = tokenData?.token;
+
+        const response = await axios.post(`${BASE_URL}/add_wish_list/${bookId}`,
+            { bookId },
+            {
+                headers: {
+                    "x-access-token": token,
+                    "Content-Type": "application/json"
+                }
+            }
+        );
+
+        return response.data;
+    } catch (error) {
+        console.error("Wishlist Adding Failed", error);
+        throw error;
+    }
+};
+
+export const removeWishlist = async (bookId: string | undefined) => {
+    try {
+        const tokenData = JSON.parse(localStorage.getItem("token") || "null");
+        const token = tokenData?.token;
+
+        const response = await axios.delete(`${BASE_URL}/remove_wishlist_item/${bookId}`, {
+            headers: {
+                "x-access-token": token,
+                "Content-Type": "application/json"
+            }
+        });
+
+        return response.data;
+    } catch (error) {
+        console.error("Wishlist Removal Failed", error);
+        throw error;
+    }
+};
 
