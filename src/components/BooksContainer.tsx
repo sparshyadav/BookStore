@@ -1,5 +1,5 @@
 import { Select } from "antd";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import BookCard from "./BookCard";
 import BookCardShimmer from "./BookCardShimmer";
 import { Pagination } from 'antd';
@@ -14,13 +14,13 @@ import BookCover8 from '../assets/BookCover8.png';
 import BookCover9 from '../assets/BookCover9.png';
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../redux/store";
-import { fetchBooks } from "../redux/bookSlice";
+import { Book, fetchBooks } from "../redux/bookSlice";
 
 const { Option } = Select;
 
 function BooksContainer() {
-    const [sortValue, setSortValue] = useState("relevance");
-    const [currentPage, setCurrentPage] = useState(() => {
+    const [sortValue, setSortValue] = useState<string>("relevance");
+    const [currentPage, setCurrentPage] = useState<number>(() => {
         return Number(localStorage.getItem("currentPage")) || 1;
     });
     const booksPerPage = 12;
@@ -44,16 +44,29 @@ function BooksContainer() {
         BookCover9
     ];
 
+    const sortedBooks = useMemo(() => {
+        const booksCopy = [...allBooks];
+        switch (sortValue) {
+            case "low-to-high":
+                return booksCopy.sort((a, b) => (a.discountPrice ?? 0) - (b.discountPrice ?? 0));
+            case "high-to-low":
+                return booksCopy.sort((a, b) => (b.discountPrice ?? 0) - (a.discountPrice ?? 0));
+            case "recommended":
+                return booksCopy.sort((a, b) => (b.quantity ?? 0) - (a.quantity ?? 0));
+            default:
+                return booksCopy;
+        }
+    }, [allBooks, sortValue]);
+
     const handleChange = (value: string) => {
         setSortValue(value);
-        console.log("Selected:", value);
+        setCurrentPage(1);
     };
 
     const hasBooks = status === "succeeded" && allBooks.length > 0;
-
     const startIndex = (currentPage - 1) * booksPerPage;
     const endIndex = startIndex + booksPerPage;
-    const displayedBooks = hasBooks ? allBooks.slice(startIndex, endIndex) : [];
+    const displayedBooks = hasBooks ? sortedBooks.slice(startIndex, endIndex) : [];
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
@@ -93,11 +106,12 @@ function BooksContainer() {
             </div>
 
             <div className="w-[67%] max-w-7xl flex max-sm:w-[92%] flex-wrap gap-[25px] justify-center items-center !mb-[50px] max-md:w-[90%] max-xl:w-[80%] max-[1515px]:w-[80%]">
-                {
-                    !hasBooks
-                        ? renderShimmerPlaceholders()
-                        : displayedBooks.map((book, i) => (
-                            <BookCard key={i} data={{
+                {!hasBooks
+                    ? renderShimmerPlaceholders()
+                    : displayedBooks.map((book: Book, i: number) => (
+                        <BookCard
+                            key={book._id || i}
+                            data={{
                                 ...book,
                                 cover: bookCovers[i % bookCovers.length],
                                 discountPrice: book.discountPrice ?? book.price,
@@ -105,8 +119,9 @@ function BooksContainer() {
                                 rating: book.rating ?? 0,
                                 quantity: book.quantity ?? 1,
                                 _id: book._id
-                            }} />
-                        ))
+                            }}
+                        />
+                    ))
                 }
             </div>
             <Pagination
@@ -119,10 +134,8 @@ function BooksContainer() {
                 disabled={!hasBooks}
             />
         </div>
-    )
+    );
 }
 
-export default BooksContainer
-
-
+export default BooksContainer;
 
