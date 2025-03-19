@@ -1,9 +1,55 @@
-import { useState } from "react"
-import bookImage from '../assets/book-image-large-2.png'
+import { useEffect, useState } from "react"
 import { Trash2 } from 'lucide-react';
+import { getWishlistItems, removeWishlist } from "../utils/API";
+import BookCover1 from '../assets/BookCover1.png';
+import BookCover2 from '../assets/BookCover2.png';
+import BookCover3 from '../assets/BookCover3.png';
+import BookCover4 from '../assets/BookCover4.png';
+import BookCover5 from '../assets/BookCover5.png';
+import BookCover6 from '../assets/BookCover6.png';
+import BookCover7 from '../assets/BookCover7.png';
+import BookCover8 from '../assets/BookCover8.png';
+import BookCover9 from '../assets/BookCover9.png';
 
 function WishlistContainer() {
-    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [isOpen, setIsOpen] = useState<boolean>(true);
+    
+    const [wishlistedBooks, setWishlistedBooks] = useState<{ _id: string, product_id: { bookName: string; author: string; discountPrice: number } }[]>([]);
+
+    const bookCovers = [
+            BookCover1, BookCover2, BookCover3, BookCover4,
+            BookCover5, BookCover6, BookCover7, BookCover8,
+            BookCover9
+        ];
+
+    useEffect(() => {
+        const fetchWishlist = async () => {
+            try {
+                const response = await getWishlistItems();
+                setWishlistedBooks(response.result.reverse());
+            } catch (error) {
+                console.error("Error fetching wishlist:", error);
+            }
+        };
+
+        fetchWishlist();
+    }, []);
+
+    const handleRemoveWishlist = async (bookId: string) => {
+        console.log("ProductID: ", bookId);
+        try {
+            const response = await removeWishlist(bookId);
+            console.log("RESPONSE: ", response);
+            setWishlistedBooks((prevBooks) => 
+                prevBooks.filter((book) => book._id !== bookId)
+            ); 
+        } catch (error) {
+            console.error("Error removing wishlist item:", error);
+        }
+    };
+
+    console.log("WISHLISTED BOOKS: ", wishlistedBooks);
+
     return (
         <div className="min-h-[93vh] !mt-[60px] w-[100%] flex flex-col items-center">
             <nav aria-label="breadcrumb" className="w-[68%] h-[75px] flex items-center max-md:w-[90%]">
@@ -22,7 +68,7 @@ function WishlistContainer() {
                     </li>
                 </ol>
             </nav>
-            <div className="w-[68%] flex items-center border border-[#E4E4E4] max-md:w-[90%]">
+            <div className="w-[68%] flex items-center border border-[#E4E4E4] max-md:w-[90%] !mb-[25px]">
                 <div className="min-h-[55px] w-[100%] border border-gray-300  p-4  mx-auto">
                     <button
                         onClick={() => setIsOpen(!isOpen)}
@@ -32,37 +78,26 @@ function WishlistContainer() {
                     </button>
                     {isOpen && (
                         <div className="w-[100%] h-[100%] flex flex-col gap-[25px] justify-center items-center transition">
-                            <div className="h-[95px] w-[95%] flex justify-between !my-[25px] max-sm:h-[75px]">
-                                <div className="flex gap-[25px]">
-                                    <div className="">
-                                        <img src={bookImage} className="w-[100%] h-[100%]" />
+                            {wishlistedBooks.map((book, i) => (
+                                <>
+                                    <div key={i} className="h-[95px] w-[95%] flex justify-between !mt-[25px] !mb-[20px] max-sm:h-[75px]">
+                                        <div className="flex gap-[25px]">
+                                            <div className="">
+                                                <img src={bookCovers[i % bookCovers.length]} className="w-[100%] h-[100%]" />
+                                            </div>
+                                            <div className="flex flex-col">
+                                                <h2 className="text-[18px] text-[#0A0102] !mb-[3px] max-sm:text-[15px]">{book.product_id.bookName}</h2>
+                                                <p className="text-[12px] text-[#9D9D9D] !mb-[10px] max-sm:text-[10px]">By {book.product_id.author}</p>
+                                                <p className="text-[15px] text-[#0A0102] max-sm:text-[12px]">Rs. {book.product_id.discountPrice}</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex justify-center items-center !mr-[15px] cursor-pointer" onClick={() => handleRemoveWishlist(book._id)}>
+                                            <Trash2 className="text-[grey] h-[25px] w-[25px] max-sm:h-[20px] max-sm:w-[20px]" />
+                                        </div>
                                     </div>
-                                    <div className="flex flex-col">
-                                        <h2 className="text-[18px] text-[#0A0102] !mb-[3px] max-sm:text-[15px]">Don't Make Me Think</h2>
-                                        <p className="text-[12px] text-[#9D9D9D] !mb-[10px] max-sm:text-[10px]">By Steve Knug</p>
-                                        <p className="text-[15px] text-[#0A0102] max-sm:text-[12px]">Rs. 1500</p>
-                                    </div>
-                                </div>
-                                <div className="flex justify-center items-center !mr-[15px]">
-                                    <Trash2 className="text-[grey] max-sm:h-[15px] w-[15px]" />
-                                </div>
-                            </div>
-                            <div className="w-[100%] border border-[#E4E4E4]"></div>
-                            <div className="h-[95px] w-[95%] flex justify-between !my-[25px] max-sm:h-[75px]">
-                                <div className="flex gap-[25px]">
-                                    <div className="">
-                                        <img src={bookImage} className="w-[100%] h-[100%]" />
-                                    </div>
-                                    <div className="flex flex-col">
-                                        <h2 className="text-[18px] text-[#0A0102] !mb-[3px] max-sm:text-[15px]">Don't Make Me Think</h2>
-                                        <p className="text-[12px] text-[#9D9D9D] !mb-[10px] max-sm:text-[10px]">By Steve Knug</p>
-                                        <p className="text-[15px] text-[#0A0102] max-sm:text-[12px]">Rs. 1500</p>
-                                    </div>
-                                </div>
-                                <div className="flex justify-center items-center !mr-[15px]">
-                                    <Trash2 className="text-[grey] max-sm:h-[15px] w-[15px]" />
-                                </div>
-                            </div>
+                                    <div className="w-[100%] border border-[#E4E4E4]"></div>
+                                </>
+                            ))}
                         </div>
                     )}
                 </div>
@@ -72,3 +107,5 @@ function WishlistContainer() {
 }
 
 export default WishlistContainer
+
+
