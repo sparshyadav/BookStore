@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { getAllBooks } from "../utils/API";
 
 export interface Book {
+    _id: string;
     quantity: number;
     rating: number;
     bookName: string;
