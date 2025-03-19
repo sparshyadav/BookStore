@@ -19,7 +19,7 @@ function MyCartContainer() {
         <nav aria-label="breadcrumb" className="w-full max-w-[800px] min-h-[75px] flex items-center max-md:w-[90%]">
           <ol className="flex w-full flex-wrap items-center rounded-md bg-slate-50 px-4 py-2">
             <li className="flex gap-1 cursor-pointer items-center text-sm text-slate-500 transition-colors duration-300 hover:text-slate-800">
-              <a href="/home">Home</a>
+              <a href="/">Home</a>
               <span className="pointer-events-none mx-2 text-slate-800 !mr-1"> / </span>
             </li>
             <li className="flex gap-1 text-black cursor-pointer items-center text-sm transition-colors duration-300 hover:text-slate-800">
@@ -28,7 +28,7 @@ function MyCartContainer() {
             </li>
           </ol>
         </nav>
-        
+
         <div className='w-full h-auto'>
           <div>
             <div className='!pl-[15px] border border-[#acabab] min-h-[250px] max-[550px]:!ml-[0px] md:min-h-[250px] w-full max-w-[775px] flex flex-col p-4 max-[550px]:h-auto'>
