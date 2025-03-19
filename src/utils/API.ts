@@ -34,15 +34,16 @@ export const getAllBooks = async () => {
     }
 }
 
-export const getBookReviews = async (bookId: string) => {
+export const getBookReviews = async (bookId: string | undefined) => {
     try {
         const tokenData = JSON.parse(localStorage.getItem("token") || "null");
         const token = tokenData?.token;
         console.log("TokeNNN:::", token);
+        console.log("BOOKID:::", bookId);
 
         const response = await axios.get(`${BASE_URL}/get/feedback/${bookId}`, {
             headers: {
-                Authorization: `Bearer ${token}`
+                "x-access-token": token
             }
         });
 
