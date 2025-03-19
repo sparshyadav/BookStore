@@ -40,7 +40,7 @@ function SignupPage() {
             console.log("Registration Successful: ", response);
 
             toast.success("Signup Successfull 🎉");
-            navigate('/');
+            navigate('/login');
         }
         catch (error) {
             console.log("Error while loginning :", error);
@@ -63,7 +63,7 @@ function SignupPage() {
                 </div>
                 <div className="h-[450px] w-[390px] rounded-[6px] z-40 shadow-xl shadow-grey-400 bg-[#FFFFFF] flex flex-col items-center justify-center gap-[15px] max-[475px]:w-[325px]">
                     <div className="w-[75%] flex justify-between">
-                        <div className="flex flex-col items-center cursor-pointer" onClick={() => navigate('/')}>
+                        <div className="flex flex-col items-center cursor-pointer" onClick={() => navigate('/login')}>
                             <div className="text-[25px] text-[#878787]">LOGIN</div>
                         </div>
                         <div className="flex flex-col items-center cursor-pointer">

@@ -35,7 +35,7 @@ function LoginPage() {
             }));
 
             toast.success("Login Successfull 🎉");
-            navigate('/home');
+            navigate('/');
         }
         catch (error) {
             console.log("Error while loginning :", error);
