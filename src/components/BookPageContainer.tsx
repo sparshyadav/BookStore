@@ -1,19 +1,18 @@
 import { useEffect, useState } from 'react'
-import bookImage1 from '../assets/BookCover1.png'
 import bookImage2 from '../assets/bookCover2.png'
 import { Star, Dot, Heart } from 'lucide-react';
-import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../redux/store';
-import { Book, fetchBooks } from '../redux/bookSlice';
-import { getBookReviews } from '../utils/API';
+import { useLocation, useParams } from 'react-router-dom';
+import { addBookReviews, getBookReviews } from '../utils/API';
 
 function BookPageContainer() {
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);
-    const [review, setReview] = useState("");
     const [showImage1, setShowImage1] = useState(true);
+    const [reviewComment, setReviewComment] = useState("");
+    const [reviews, setReviews] = useState<ResponseType["result"]>([]);
+    const location = useLocation();
     const { bookId } = useParams();
+    const { data } = location.state || {};
 
     interface User {
         _id: string;
@@ -40,19 +39,14 @@ function BookPageContainer() {
 
     const getInitials = (fullName: string) => {
         return fullName
-            .split(" ")
-            .map(name => name[0])
-            .join("")
-            .toUpperCase();
+            ? fullName
+                .split(" ")
+                .map(name => name[0])
+                .join("")
+                .toUpperCase()
+            : JSON.parse(localStorage.getItem("token") || "null").name.slice(0, 1);
     };
 
-    const [booksArray, setBooksArray] = useState<Book[]>([]);
-    const [bookData, setBookData] = useState<Book[]>([]);
-
-    const dispatch = useDispatch<AppDispatch>();
-    const { allBooks, status } = useSelector((state: RootState) => state.books);
-
-    const [reviews, setReviews] = useState<ResponseType["result"]>([]);
 
     useEffect(() => {
         const fetchReviews = async () => {
@@ -60,28 +54,29 @@ function BookPageContainer() {
                 if (!bookId) return;
 
                 const response: ResponseType = await getBookReviews(bookId);
-                setReviews(response.result);
+                setReviews(response.result.reverse());
             } catch (error) {
                 console.error("Error fetching reviews:", error);
             }
         };
 
         fetchReviews();
-    }, []);
+    }, [bookId]);
 
+    const handleReviewSubmit = async () => {
+        try {
+            const response = await addBookReviews(reviewComment, rating, bookId) as { result: Review };
+            console.log("REVIEW ADDED SUCCESSFULLY: ", response);
 
-    useEffect(() => {
-        if (status === "idle") {
-            dispatch(fetchBooks());
+            setReviews((prev) => [response.result, ...prev]);
+
+            setReviewComment("");
+            setRating(0);
         }
-    }, [dispatch, status]);
-
-    useEffect(() => {
-        if (allBooks.length > 0) {
-            setBooksArray(allBooks);
-            setBookData(booksArray.filter((book) => book.id === bookId));
+        catch (error) {
+            console.error("Error Adding reviews:", error);
         }
-    }, [booksArray, bookId, allBooks]);
+    }
 
     return (
         <div className='!mt-[60px] w-[100%] flex flex-col items-center !my-[35px]'>
@@ -105,7 +100,7 @@ function BookPageContainer() {
                 <div className='w-[35%] h-[500px] flex max-md:w-[45%] max-sm:w-[90%]'>
                     <div className='w-[15%] h-[200px]'>
                         <div className='h-[65px] w-[100%] border border-black flex justify-center items-center hover:cursor-pointer'>
-                            <img src={bookImage1} className='h-[62px] !p-[2px]' onClick={() => setShowImage1(true)} />
+                            <img src={data.cover} className='h-[62px] !p-[2px]' onClick={() => setShowImage1(true)} />
                         </div>
                         <div className='h-[65px] w-[100%] border border-black flex justify-center items-center hover:cursor-pointer'>
                             <img src={bookImage2} className='h-[62px] !p-[2px]' onClick={() => setShowImage1(false)} />
@@ -113,7 +108,7 @@ function BookPageContainer() {
                     </div>
                     <div className='w-[85%] flex flex-col gap-2.5'>
                         <div className='w-[100%] h-[375px] border border-[grey] flex justify-center items-center max-[1050px]:h-[250px]'>
-                            <img src={showImage1 ? bookImage1 : bookImage2} className='h-[90%] max-[1050px]:h-[70%]' />
+                            <img src={showImage1 ? data.cover : bookImage2} className='h-[90%] max-[1050px]:h-[70%]' />
                         </div>
                         <div className="w-[100%] flex flex-col lg:flex-row justify-between gap-4 lg:gap-6 lg:w-full">
                             <button className="h-[40px] text-white rounded-[2px] w-full lg:w-[49%] bg-[#A03037] hover:bg-[#8C282E] text-sm lg:text-base">
@@ -128,13 +123,21 @@ function BookPageContainer() {
                 </div>
                 <div className='w-[62%] max-md:w-[85%]'>
                     <div className=' w-[100%] flex flex-col gap-[5px] !mb-[15px]'>
-                        <p className='text-[30px]'>Don't Make Me Think</p>
-                        <p className='text-gray-500'>By Steve Kurg</p>
-                        <div className='flex items-center justify-center gap-[5px] bg-[#388E3C] rounded-[1px] w-[55px] h-[25px] text-white'>
-                            <p className='text-[15px]'>4.5</p>
-                            <Star className='w-[13px] h-[13px]' fill='white' />
+                        <p className='text-[30px]'>{data.bookName}</p>
+                        <p className='text-gray-500'>{data.author}</p>
+                        <div className='flex items-center gap-[15px]'>
+                            <div className='flex items-center justify-center gap-[5px] bg-[#388E3C] rounded-[1px] w-[55px] h-[25px] text-white'>
+                                <p className='text-[15px]'>4.5</p>
+                                <Star className='w-[13px] h-[13px]' fill='white' />
+                            </div>
+                            <p className='text-[12px] text-gray-500'>({data.quantity})</p>
                         </div>
-                        <p className='text-[27px] font-medium'>Rs. 1500</p>
+                        <div className='flex gap-[15px]'>
+                            <p className='text-[27px] font-medium'>Rs. {data.discountPrice}</p>
+                            <div className='flex items-end'>
+                                <p className='text-[20px] line-through text-[#878787]'>Rs. {data.price}</p>
+                            </div>
+                        </div>
                     </div>
                     <div className='border border-[#c5c5c5]'></div>
                     <div className='border-t-[grey] w-[100%] !mt-[35px] text-[#555454] !mb-[45px]'>
@@ -142,38 +145,38 @@ function BookPageContainer() {
                             <Dot />
                             <h2>Book Details</h2>
                         </div>
-                        <p className='!pl-[10px]'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem doloribus culpa maxime molestias. Fugit, velit? Eaque accusamus aliquam nostrum veniam reiciendis nulla odio neque, quas suscipit corrupti harum iusto illo.</p>
+                        <p className='!pl-[25px]'>{data.description}</p>
                     </div>
                     <div className='border border-[#c5c5c5]'></div>
                     <div className='w-[100%] !mt-[35px] p-4 rounded-lg'>
                         <h2 className="text-lg font-semibold">Customer Feedback</h2>
-                        <div className="!mt-3 !ml-3 flex flex-col gap-2">
-                            <p className="text-gray-700 font-medium">Overall Rating</p>
-                            <div className="flex gap-2 mt-1">
-                                {[1, 2, 3, 4, 5].map((star) => (
-                                    <Star
-                                        key={star}
-                                        className={`w-6 h-6 cursor-pointer transition ${(hover || rating) >= star ? "fill-yellow-500 stroke-yellow-500" : "stroke-gray-400"
-                                            }`}
-                                        onMouseEnter={() => setHover(star)}
-                                        onMouseLeave={() => setHover(0)}
-                                        onClick={() => setRating(star)}
-                                    />
-                                ))}
-                            </div>
-                        </div>
                         <div className="!mt-4 !ml-3 flex flex-col gap-1">
                             <p className="text-gray-700 font-medium">Write Your Review</p>
-                            <div className='bg-[#F9F9F9]'>
+                            <div className='bg-[#F5F5F5] !p-[10px] '>
+                                <div className="!mt-3 !ml-3 flex flex-col gap-2">
+                                    <p className="text-gray-700 font-medium">Overall Rating</p>
+                                    <div className="flex gap-2 mt-1">
+                                        {[1, 2, 3, 4, 5].map((star) => (
+                                            <Star
+                                                key={star}
+                                                className={`w-5 h-5 cursor-pointer transition ${(hover || rating) >= star ? "fill-yellow-500 stroke-yellow-500" : "stroke-gray-400"
+                                                    }`}
+                                                onMouseEnter={() => setHover(star)}
+                                                onMouseLeave={() => setHover(0)}
+                                                onClick={() => setRating(star)}
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
                                 <textarea
                                     className="w-full !mt-1 !mb-5 !p-2 outline-none h-[80%]"
                                     rows={4}
                                     placeholder="Write Your Review..."
-                                    value={review}
-                                    onChange={(e) => setReview(e.target.value)}
+                                    value={reviewComment}
+                                    onChange={(e) => setReviewComment(e.target.value)}
                                 />
                                 <div className='flex justify-end !pr-2 h-[20%]'>
-                                    <button className="bg-[#3371B5] text-white w-[75px] h-[24%] rounded-[1px] hover:bg-[#2A5C94] transition">
+                                    <button onClick={handleReviewSubmit} className="bg-[#3371B5] text-white w-[75px] h-[24%] rounded-[1px] hover:bg-[#2A5C94] transition">
                                         Submit
                                     </button>
                                 </div>
