@@ -80,13 +80,13 @@ function Navbar() {
                                                         </button>
                                                     </NavLink>
                                                     <div className='w-[90%] border border-[#878787] !mb-[10px] !mt-[5px]'></div>
-                                                    <div className='flex gap-1 text-[#878787] items-center'>
+                                                    <div className='flex gap-1 text-[#878787] items-center hover:bg-gray-100 cursor-pointer'>
                                                         <Wallet className='h-[15px] w-[15px]' />
-                                                        <NavLink to="/wishlist" className="px-3 py-2 hover:bg-gray-100 text-[15px]">My Wishlist</NavLink>
+                                                        <NavLink to="/pleaselogin" className="px-3 py-2 hover:bg-gray-100 text-[15px]">My Wishlist</NavLink>
                                                     </div>
-                                                    <div className='flex gap-1 text-[#878787] items-center'>
+                                                    <div className='flex gap-1 text-[#878787] items-center hover:bg-gray-100 cursor-pointer'>
                                                         <Heart className='h-[15px] w-[15px]' />
-                                                        <NavLink to="/myorder" className="px-3 py-2 hover:bg-gray-100 text-[15px]">My Orders</NavLink>
+                                                        <NavLink to="/pleaselogin" className="px-3 py-2 hover:bg-gray-100 text-[15px]">My Orders</NavLink>
                                                     </div>
                                                 </>
                                             })()
