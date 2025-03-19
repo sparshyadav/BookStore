@@ -3,22 +3,19 @@ import { NavLink } from 'react-router-dom';
 import educationImage from '../assets/education.svg';
 import { User, ShoppingCart, Search, Wallet, Heart } from 'lucide-react';
 import { useDispatch } from "react-redux";
-import {  setSearchQuery } from "../redux/searchSlice";
+import { setSearchQuery } from "../redux/searchSlice";
 
 function Navbar() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const dispatch = useDispatch();
-    // console.log("Search Query: ", )
 
     return (
         <div className='h-[60px] w-[100%] bg-[#A03037] flex justify-center fixed z-50 overflow-visible'>
             <div className='h-[100%] w-[70%] max-w-7xl flex justify-between max-sm:w-[100%] max-lg:w-[90%] relative'>
                 <NavLink to={'/'}>
                     <div className='h-[100%] w-[200px] flex items-center justify-center gap-5 max-sm:gap-2 cursor-pointer'>
-                        <NavLink to={'/orderconfirm'}>
-                            <img src={educationImage} alt='Image Not Found' className='max-sm:h-[15px]' />
-                        </NavLink>
+                        <img src={educationImage} alt='Image Not Found' className='max-sm:h-[15px]' />
                         <p className='text-white text-[25px] max-sm:text-[18px]'>BookStore</p>
                     </div>
                 </NavLink>
