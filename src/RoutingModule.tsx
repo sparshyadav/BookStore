@@ -13,7 +13,7 @@ import MyOrderPage from './pages/MyOrderPage';
 const RoutingModule = () => {
     const route = createBrowserRouter([
         {
-            path: '',
+            path: '/login',
             element: <LoginPage />
         },
         {
@@ -21,8 +21,8 @@ const RoutingModule = () => {
             element: <SignupPage />
         },
         {
-            path: '/home',
-            element: <HomePage />
+            path: '/',
+            element: <HomePage />,
         },
         {
             path: '/bookpage/:bookId',
