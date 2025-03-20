@@ -13,14 +13,14 @@ import BookCover9 from '../assets/BookCover9.png';
 
 function WishlistContainer() {
     const [isOpen, setIsOpen] = useState<boolean>(true);
-    
-    const [wishlistedBooks, setWishlistedBooks] = useState<{ _id: string, product_id: { bookName: string; author: string; discountPrice: number } }[]>([]);
+
+    const [wishlistedBooks, setWishlistedBooks] = useState<{ _id: string, product_id: { bookName: string; author: string; discountPrice: number, _id: string } }[]>([]);
 
     const bookCovers = [
-            BookCover1, BookCover2, BookCover3, BookCover4,
-            BookCover5, BookCover6, BookCover7, BookCover8,
-            BookCover9
-        ];
+        BookCover1, BookCover2, BookCover3, BookCover4,
+        BookCover5, BookCover6, BookCover7, BookCover8,
+        BookCover9
+    ];
 
     useEffect(() => {
         const fetchWishlist = async () => {
@@ -38,17 +38,14 @@ function WishlistContainer() {
     const handleRemoveWishlist = async (bookId: string) => {
         console.log("ProductID: ", bookId);
         try {
-            const response = await removeWishlist(bookId);
-            console.log("RESPONSE: ", response);
-            setWishlistedBooks((prevBooks) => 
-                prevBooks.filter((book) => book._id !== bookId)
-            ); 
+            await removeWishlist(bookId);
+            setWishlistedBooks((prevBooks) =>
+                prevBooks.filter((book) => book.product_id._id !== bookId)
+            );
         } catch (error) {
             console.error("Error removing wishlist item:", error);
         }
     };
-
-    console.log("WISHLISTED BOOKS: ", wishlistedBooks);
 
     return (
         <div className="min-h-[93vh] !mt-[60px] w-[100%] flex flex-col items-center">
@@ -91,7 +88,7 @@ function WishlistContainer() {
                                                 <p className="text-[15px] text-[#0A0102] max-sm:text-[12px]">Rs. {book.product_id.discountPrice}</p>
                                             </div>
                                         </div>
-                                        <div className="flex justify-center items-center !mr-[15px] cursor-pointer" onClick={() => handleRemoveWishlist(book._id)}>
+                                        <div className="flex justify-center items-center !mr-[15px] cursor-pointer" onClick={() => handleRemoveWishlist(book.product_id._id)}>
                                             <Trash2 className="text-[grey] h-[25px] w-[25px] max-sm:h-[20px] max-sm:w-[20px]" />
                                         </div>
                                     </div>
