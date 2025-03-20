@@ -98,11 +98,9 @@ export const addWishlist = async (bookId: string | undefined) => {
 };
 
 export const removeWishlist = async (bookId: string | undefined) => {
-    console.log("Getting Book Id: ", bookId);
     try {
         const tokenData = JSON.parse(localStorage.getItem("token") || "null");
         const token = tokenData?.token;
-        console.log("TOKEN: ", token);
 
         const response = await axios.delete(`${BASE_URL}/remove_wishlist_item/${bookId}`, {
             headers: {
@@ -123,7 +121,7 @@ export const getWishlistItems = async () => {
         const tokenData = JSON.parse(localStorage.getItem("token") || "null");
         const token = tokenData?.token;
 
-        const response = await axios.get("https://bookstore.incubation.bridgelabz.com/bookstore_user/get_wishlist_items", {
+        const response = await axios.get(`${BASE_URL}/get_wishlist_items`, {
             headers: {
                 "x-access-token": token,
                 "Content-Type": "application/json"
@@ -136,5 +134,68 @@ export const getWishlistItems = async () => {
         throw error;
     }
 };
+
+
+export const addToCart = async (bookId: string | undefined) => {
+    try {
+        const tokenData = JSON.parse(localStorage.getItem("token") || "null");
+        const token = tokenData?.token;
+
+        const response = await axios.post(`${BASE_URL}/add_cart_item/${bookId}`, { bookId }, {
+            headers: {
+                "x-access-token": token,
+                "Content-Type": "application/json"
+            }
+        });
+
+        return response.status;
+    } catch (error) {
+        console.error("Adding to Cart Failed", error);
+        throw error;
+    }
+};
+
+export const getCartItems = async () => {
+    try {
+        const tokenData = JSON.parse(localStorage.getItem("token") || "null");
+        const token = tokenData?.token;
+
+        const response = await axios.get(`${BASE_URL}/get_cart_items`, {
+            headers: {
+                "x-access-token": token,
+                "Content-Type": "application/json"
+            }
+        });
+
+        return response.data.result;
+    } catch (error) {
+        console.error("Getting Cart Items Failed", error);
+        throw error;
+    }
+};
+
+export const removeCartItems = async (bookId: string) => {
+    try {
+        const tokenData = JSON.parse(localStorage.getItem("token") || "null");
+        const token = tokenData?.token;
+
+        const response = await axios.delete(`${BASE_URL}/remove_cart_item/${bookId}`, {
+            headers: {
+                "x-access-token": token,
+                "Content-Type": "application/json"
+            },
+            data: { bookId }
+        });
+
+        return response.status;
+    } catch (error) {
+        console.error("Getting Cart Items Failed", error);
+        throw error;
+    }
+};
+
+
+
+
 
 
