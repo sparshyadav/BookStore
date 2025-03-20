@@ -1,17 +1,39 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import bookImage2 from '../assets/bookCover2.png'
 import { Star, Dot, Heart } from 'lucide-react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import FeedbackBookPage from './FeedbackBookPage';
 import { toast } from 'react-toastify';
-import { addWishlist, removeWishlist } from '../utils/API';
+import { addToCart, addWishlist, getWishlistItems, removeWishlist } from '../utils/API';
+import CartCounter from './CartCounter';
+
+interface Book {
+    _id: string;
+    bookName: string;
+    author: string;
+    cover: string;
+    quantity: number;
+    discountPrice: number;
+    price: number;
+    description: string;
+}
+
+interface WishlistItem {
+    product_id: Book;
+    _id: string;
+}
 
 function BookPageContainer() {
+    const { bookId } = useParams();
     const [showImage1, setShowImage1] = useState(true);
-    const [isWishlisted, setIsWishlisted]=useState(false);
+    const [wishlistedBooks, setWishlistedBooks] = useState<WishlistItem[]>([]);
+    const isCurrentBookWishlisted = wishlistedBooks.some((book) => book.product_id._id === bookId);
+    const [isWishlisted, setIsWishlisted] = useState(isCurrentBookWishlisted);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [showCounter, setShowCounter] = useState(false);
     const location = useLocation();
     const { data } = location.state || {};
-    const {bookId}=useParams();
+    const navigate = useNavigate();
 
     const handleWishlist = async () => {
         try {
@@ -19,19 +41,55 @@ function BookPageContainer() {
                 const response = await removeWishlist(bookId);
                 console.log("RESPONSE FROM REMOVE WISHLIST: ", response);
                 toast.error("Item Removed From Wishlist! ❌");
-                setIsWishlisted(false); 
+                setIsWishlisted(false);
             } else {
                 const response = await addWishlist(bookId);
                 console.log("RESPONSE FROM ADD WISHLIST: ", response);
                 toast.success("Item Added to Wishlist! ✅");
-                setIsWishlisted(true); 
+                setIsWishlisted(true);
             }
         } catch (error) {
             console.error("Wishlist operation failed:", error);
             toast.error("Something went wrong! ❌");
         }
-    };    
-    
+    };
+
+    useEffect(() => {
+        const fetchWishlist = async () => {
+            try {
+                const response = await getWishlistItems();
+                setWishlistedBooks(response.result.reverse());
+            } catch (error) {
+                console.error("Error fetching wishlist:", error);
+            }
+        };
+
+        fetchWishlist();
+    }, []);
+
+    useEffect(() => {
+        setIsWishlisted(wishlistedBooks.some((book) => book.product_id._id === bookId));
+    }, [wishlistedBooks, bookId]);
+
+    useEffect(() => {
+        const tokenData = JSON.parse(localStorage.getItem("token") || "null");
+        setIsLoggedIn(!!tokenData?.token);
+    }, []);
+
+    const handleAddToCart = async () => {
+        if (!isLoggedIn) {
+            navigate("/pleaselogin");
+        } else {
+            try {
+                await addToCart(bookId);
+                toast.success("Item added to cart! ✅");
+                setShowCounter(true);
+            } catch (error) {
+                console.error("Error adding to cart:", error);
+                toast.error("Failed to add item to cart. ❌");
+            }
+        }
+    };
 
     return (
         <div className='!mt-[60px] w-[100%] flex flex-col items-center !my-[35px]'>
@@ -66,15 +124,21 @@ function BookPageContainer() {
                             <img src={showImage1 ? data.cover : bookImage2} className='h-[90%] max-[1050px]:h-[70%]' />
                         </div>
                         <div className="w-[100%] flex flex-col lg:flex-row justify-between gap-4 lg:gap-6 lg:w-full">
-                            <button className="cursor-pointer h-[40px] text-white rounded-[2px] w-full lg:w-[49%] bg-[#A03037] hover:bg-[#8C282E] text-sm lg:text-base">
-                                ADD TO BAG
-                            </button>
+                            {
+                                showCounter ? (
+                                    <CartCounter />
+                                ) : (
+                                    <button onClick={handleAddToCart} className="cursor-pointer h-[40px] text-white rounded-[2px] w-full lg:w-[49%] bg-[#A03037] hover:bg-[#8C282E] text-sm lg:text-base">
+                                        ADD TO BAG
+                                    </button>
+                                )
+                            }
                             <button onClick={handleWishlist} className="cursor-pointer h-[40px] bg-[#333333] rounded-[2px] w-full lg:w-[49%] text-white flex justify-center items-center gap-[5px] hover:bg-[#4D4D4D] text-sm lg:text-base">
                                 <Heart className='w-[18px] h-[18px]' fill='white' />
                                 {
-                                    isWishlisted?
-                                    <p>WISHLISTED</p>:
-                                    <p>WISHLIST</p>
+                                    isWishlisted ?
+                                        <p>WISHLISTED</p> :
+                                        <p>WISHLIST</p>
                                 }
                             </button>
                         </div>
