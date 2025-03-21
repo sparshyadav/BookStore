@@ -135,7 +135,6 @@ export const getWishlistItems = async () => {
     }
 };
 
-
 export const addToCart = async (bookId: string | undefined) => {
     try {
         const tokenData = JSON.parse(localStorage.getItem("token") || "null");
@@ -190,6 +189,26 @@ export const removeCartItems = async (bookId: string) => {
         return response.status;
     } catch (error) {
         console.error("Getting Cart Items Failed", error);
+        throw error;
+    }
+};
+
+export const updateCartItems = async (bookId: string | undefined, quantity: number) => {
+    try {
+        const tokenData = JSON.parse(localStorage.getItem("token") || "null");
+        const token = tokenData?.token;
+
+        const response = await axios.put(`${BASE_URL}/cart_item_quantity/${bookId}`, { quantityToBuy: quantity }, {
+            headers: {
+                "x-access-token": token,
+                "Content-Type": "application/json"
+            }
+        });
+
+        console.log("RESPONSE FROM API CALL: ", response);
+        return response.status;
+    } catch (error) {
+        console.error("Updating Cart Items Failed", error);
         throw error;
     }
 };
