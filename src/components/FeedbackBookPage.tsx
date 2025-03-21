@@ -62,8 +62,6 @@ function FeedbackBookPage() {
     const handleReviewSubmit = async () => {
         try {
             const response = await addBookReviews(reviewComment, rating, bookId) as { result: Review };
-            console.log("REVIEW ADDED SUCCESSFULLY: ", response);
-
             setReviews((prev) => [response.result, ...prev]);
 
             setReviewComment("");
