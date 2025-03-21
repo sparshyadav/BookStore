@@ -2,13 +2,16 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import educationImage from '../assets/education.svg';
 import { User, ShoppingCart, Search, Wallet, Heart } from 'lucide-react';
-import { useDispatch } from "react-redux";
 import { setSearchQuery } from "../redux/searchSlice";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "../redux/store";
 
 function Navbar() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
+    const { totalCount } = useSelector(
+        (state: RootState) => state.cart
+    );
 
     return (
         <div className='h-[60px] w-[100%] bg-[#A03037] flex justify-center fixed z-50 overflow-visible'>
@@ -97,10 +100,15 @@ function Navbar() {
 
                         </div>
                         <NavLink to={'/mycart'}>
-                            <div className='bg-[#A03037] h-[100%] w-[80px] flex flex-col justify-center items-center gap-1 text-white max-md:w-[75px] max-sm:w-[50px]'>
+                            <div className='relative bg-[#A03037] h-[100%] w-[80px] flex flex-col justify-center items-center gap-1 text-white max-md:w-[75px] max-sm:w-[50px]'>
                                 <ShoppingCart className="w-[25px] h-[25px] max-md:w-[22px] max-md:h-[22px] max-sm:w-[18px] max-sm:h-[18px]" />
                                 <p className="text-[10px] hidden md:block">Cart</p>
+                                <div
+                                    className='absolute top-[7px] right-[20px] border rounded-full h-[18px] w-[18px] bg-white text-[red] text-[10px] flex items-center justify-center font-bold max-[768px]:top-[12px] max-[640px]:top-[12px] max-[640px]:right-[8px]'>
+                                    {totalCount}
+                                </div>
                             </div>
+
                         </NavLink>
                     </div>
                 </div>
