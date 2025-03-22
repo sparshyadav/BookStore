@@ -9,6 +9,7 @@ import PleaseLoginPage from "./pages/PleaseLoginPage"
 import MyCartPage from "./pages/MyCartPage"
 import OrderConfirmPage from "./pages/OrderConfirmPage"
 import MyOrderPage from './pages/MyOrderPage';
+import Profile from "./pages/Profile"
 
 const RoutingModule = () => {
     const route = createBrowserRouter([
@@ -51,6 +52,10 @@ const RoutingModule = () => {
         {
             path: 'myorder',
             element: <MyOrderPage />
+        },
+        {
+            path: '/profile',
+            element: <Profile />
         }
     ]);
 
