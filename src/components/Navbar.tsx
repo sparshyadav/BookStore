@@ -58,7 +58,7 @@ function Navbar() {
                                                         <p className="text-[#0A0102] text-[18px] !mb-[5px]">Welcome, {tokenData.name}</p>
                                                         <div className='flex gap-1 text-[#878787] items-center !mb-[5px] hover:bg-gray-100 cursor-pointer'>
                                                             <User className='h-[15px] w-[15px]' />
-                                                            <NavLink to="/wishlist" className="px-3 py-2 text-[15px]">Profile</NavLink>
+                                                            <NavLink to="/profile" className="px-3 py-2 text-[15px]">Profile</NavLink>
                                                         </div>
                                                         <div className='flex gap-1 text-[#878787] items-center !mb-[5px] hover:bg-gray-100 cursor-pointer'>
                                                             <Wallet className='h-[15px] w-[15px]' />
