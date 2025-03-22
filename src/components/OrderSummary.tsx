@@ -55,7 +55,7 @@ function OrderSummary() {
     ];
 
     const calculateTotal = () => {
-        return items.reduce((total, item) => total + item.product_id.discountPrice, 0);
+        return items.reduce((total, item) => total + (item.product_id.discountPrice*item.quantityToBuy), 0);
     };
 
     return (
@@ -91,7 +91,7 @@ function OrderSummary() {
                                                     By {book.product_id.author}
                                                 </p>
                                                 <p className="text-[15px] text-[#0A0102] max-sm:text-[12px]">
-                                                    Rs. {book.product_id.discountPrice}
+                                                    Rs. {book.product_id.discountPrice} x {book.quantityToBuy} = {book.product_id.discountPrice*book.quantityToBuy}
                                                 </p>
                                             </div>
                                         </div>
