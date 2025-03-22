@@ -11,14 +11,17 @@ interface CartCounterProps {
 
 function CartCounter({ data }: CartCounterProps) {
     const { bookId, bookInCartQuantity } = data;
+    console.log("BOOKID: ", bookId);
+    console.log("Quantity: ", bookInCartQuantity);
     const [count, setCount] = useState<number>(bookInCartQuantity);
     const dispatch = useDispatch<AppDispatch>();
 
     const handleIncrease = async () => {
         const updatedQuantity = count + 1;
         try {
-            await updateCartItems(bookId, updatedQuantity);
+            const Resposne = await updateCartItems(bookId, updatedQuantity);
             toast.success("Quantity Increased Successfully! ✅");
+            console.log("RESPOSE: ", Resposne);
             setCount(updatedQuantity);
             dispatch(fetchCartItems());
         } catch (err) {
@@ -40,7 +43,7 @@ function CartCounter({ data }: CartCounterProps) {
                 toast.error("Failed to update quantity! ❌");
             }
         } else {
-            console.log("Quantity cannot be less than 1");
+            toast.error("Quantity cannot be less than 1");
         }
     };
 
