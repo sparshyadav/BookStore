@@ -37,7 +37,6 @@ function BookPageContainer() {
     const dispatch = useDispatch<AppDispatch>();
 
     const { items } = useSelector((state: RootState) => state.cart);
-    
     const bookInCart = items.find((book) => book.product_id._id === bookId);
     const bookInCartQuantity = bookInCart?.quantityToBuy || 0;
     const showCounter = bookInCartQuantity > 0;
@@ -92,7 +91,7 @@ function BookPageContainer() {
         try {
             await addToCart(bookId);
             toast.success("Item added to cart! ✅");
-            dispatch(fetchCartItems()); 
+            dispatch(fetchCartItems());
         } catch (error) {
             console.error("Error adding to cart:", error);
             toast.error("Failed to add item to cart. ❌");
@@ -131,15 +130,15 @@ function BookPageContainer() {
                             {showCounter ? (
                                 <CartCounter data={{ bookId, bookInCartQuantity }} />
                             ) : (
-                                <button 
-                                    onClick={handleAddToCart} 
+                                <button
+                                    onClick={handleAddToCart}
                                     className="cursor-pointer h-[40px] text-white rounded-[2px] w-full lg:w-[49%] bg-[#A03037] hover:bg-[#8C282E] text-sm lg:text-base"
                                 >
                                     ADD TO BAG
                                 </button>
                             )}
-                            <button 
-                                onClick={handleWishlist} 
+                            <button
+                                onClick={handleWishlist}
                                 className="cursor-pointer h-[40px] bg-[#333333] rounded-[2px] w-full lg:w-[49%] text-white flex justify-center items-center gap-[5px] hover:bg-[#4D4D4D] text-sm lg:text-base"
                             >
                                 <Heart className='w-[18px] h-[18px]' fill='white' />
