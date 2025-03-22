@@ -15,6 +15,7 @@ import BookCover9 from '../assets/BookCover9.png';
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../redux/store";
 import { Book, fetchBooks } from "../redux/bookSlice";
+import { selectSearchQuery } from "../redux/searchSlice";
 
 const { Option } = Select;
 
@@ -27,12 +28,17 @@ function BooksContainer() {
 
     const dispatch = useDispatch<AppDispatch>();
     const { allBooks, status } = useSelector((state: RootState) => state.books);
+    const searchQuery = useSelector(selectSearchQuery);
 
     useEffect(() => {
         if (status === "idle") {
             dispatch(fetchBooks());
         }
     }, [dispatch, status]);
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchQuery]);
 
     useEffect(() => {
         localStorage.setItem("currentPage", String(currentPage));
@@ -44,19 +50,33 @@ function BooksContainer() {
         BookCover9
     ];
 
-    const sortedBooks = useMemo(() => {
-        const booksCopy = [...allBooks];
+    const filteredAndSortedBooks = useMemo(() => {
+        let filteredBooks = [...allBooks];
+
+        if (searchQuery.trim() !== "") {
+            const query = searchQuery.toLowerCase();
+            filteredBooks = filteredBooks.filter(book => {
+                const bookTitle = (book.bookName || book.title || "").toString().toLowerCase();
+                const bookAuthor = (book.author || "").toString().toLowerCase();
+                const bookDescription = (book.description || "").toString().toLowerCase();
+
+                return bookTitle.includes(query) ||
+                    bookAuthor.includes(query) ||
+                    bookDescription.includes(query);
+            });
+        }
+
         switch (sortValue) {
             case "low-to-high":
-                return booksCopy.sort((a, b) => (a.discountPrice ?? 0) - (b.discountPrice ?? 0));
+                return filteredBooks.sort((a, b) => (a.discountPrice ?? 0) - (b.discountPrice ?? 0));
             case "high-to-low":
-                return booksCopy.sort((a, b) => (b.discountPrice ?? 0) - (a.discountPrice ?? 0));
+                return filteredBooks.sort((a, b) => (b.discountPrice ?? 0) - (a.discountPrice ?? 0));
             case "recommended":
-                return booksCopy.sort((a, b) => (b.quantity ?? 0) - (a.quantity ?? 0));
+                return filteredBooks.sort((a, b) => (b.quantity ?? 0) - (a.quantity ?? 0));
             default:
-                return booksCopy;
+                return filteredBooks;
         }
-    }, [allBooks, sortValue]);
+    }, [allBooks, sortValue, searchQuery]);
 
     const handleChange = (value: string) => {
         setSortValue(value);
@@ -66,7 +86,8 @@ function BooksContainer() {
     const hasBooks = status === "succeeded" && allBooks.length > 0;
     const startIndex = (currentPage - 1) * booksPerPage;
     const endIndex = startIndex + booksPerPage;
-    const displayedBooks = hasBooks ? sortedBooks.slice(startIndex, endIndex) : [];
+    const displayedBooks = hasBooks ? filteredAndSortedBooks.slice(startIndex, endIndex) : [];
+    const totalFilteredBooks = hasBooks ? filteredAndSortedBooks.length : 0;
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
@@ -85,7 +106,12 @@ function BooksContainer() {
                     <div className="text-[30px] flex items-center gap-[10px] max-sm:gap-[2px] max-md:gap-[5px]">
                         <p className="text-[35px] max-md:text-[25px] max-sm:text-[20px]">Books</p>
                         <p className="text-[12px] text-[grey] !mt-2 max-sm:!mt-1">
-                            {hasBooks ? `(${allBooks.length} Books)` : "(Loading...)"}
+                            {hasBooks ?
+                                searchQuery ?
+                                    `(${totalFilteredBooks} of ${allBooks.length} Books)` :
+                                    `(${allBooks.length} Books)` :
+                                "(Loading...)"
+                            }
                         </p>
                     </div>
                     <div className="">
@@ -104,6 +130,12 @@ function BooksContainer() {
                     </div>
                 </div>
             </div>
+
+            {hasBooks && searchQuery && totalFilteredBooks === 0 && (
+                <div className="w-[67%] py-8 text-center text-gray-500">
+                    No books found matching "{searchQuery}"
+                </div>
+            )}
 
             <div className="w-[67%] max-w-7xl flex max-sm:w-[92%] flex-wrap gap-[25px] justify-center items-center !mb-[50px] max-md:w-[90%] max-xl:w-[80%] max-[1515px]:w-[80%]">
                 {!hasBooks
@@ -127,7 +159,7 @@ function BooksContainer() {
             <Pagination
                 defaultCurrent={1}
                 current={currentPage}
-                total={allBooks.length}
+                total={totalFilteredBooks}
                 pageSize={booksPerPage}
                 onChange={handlePageChange}
                 showSizeChanger={false}
@@ -138,4 +170,3 @@ function BooksContainer() {
 }
 
 export default BooksContainer;
-
