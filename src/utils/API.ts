@@ -213,6 +213,30 @@ export const updateCartItems = async (bookId: string | undefined, quantity: numb
     }
 };
 
+export const addOrder = async (allOrders: {
+    product_id: string,
+    product_name: string,
+    product_quantity: number,
+    product_price: number
+}[]) => {
+    try {
+        const tokenData = JSON.parse(localStorage.getItem("token") || "null");
+        const token = tokenData?.token;
+
+        const response = await axios.post(`${BASE_URL}/add/order`, { orders: allOrders }, {
+            headers: {
+                "x-access-token": token,
+                "Content-Type": "application/json"
+            }
+        });
+
+        console.log("RESPONSE FROM API CALL: ", response);
+        return response.status;
+    } catch (error) {
+        console.error("Updating Cart Items Failed", error);
+        throw error;
+    }
+};
 
 
 
