@@ -3,6 +3,11 @@ import Confetti from 'react-confetti';
 
 function OrderConfirmContainer() {
     const { width, height } = useWindowSize();
+    function getRandomSixDigit(): number {
+        return Math.floor(Math.random() * 900000) + 100000;
+    }
+
+    const number = getRandomSixDigit()
 
     return (
         <div className='w-full min-h-[85vh] !mt-[60px] flex flex-col justify-center items-center gap-6 p-4'>
@@ -15,7 +20,7 @@ function OrderConfirmContainer() {
                 />
                 <Confetti width={width} height={height} />
                 <p className='text-[#333232] text-lg mt-2'>
-                    Hurray!!! Your order is confirmed. The order ID is <b>#123456</b>. Save the order ID for further communication.
+                    Hurray!!! Your order is confirmed. The order ID is <b>#{number}</b>. Save the order ID for further communication.
                 </p>
             </div>
             <div className="p-4 w-full max-w-2xl max-[768px]:w-[90%]">
