@@ -1,11 +1,11 @@
-import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
+import { GoogleLogin, GoogleOAuthProvider, CredentialResponse } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 function GoogleSignIn() {
     const navigate = useNavigate();
 
-    const handleSuccess = (credentialResponse: { credential: string }) => {
+    const handleSuccess = (credentialResponse: CredentialResponse): void => {
         localStorage.setItem("token", JSON.stringify({
             token: credentialResponse.credential,
             name: "User"
@@ -28,7 +28,6 @@ function GoogleSignIn() {
                 theme="filled_blue"
                 size="large"
                 width="200"
-                height="100"
             />
         </GoogleOAuthProvider>
     )
