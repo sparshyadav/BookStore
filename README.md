@@ -90,7 +90,7 @@ To run this project locally, follow these steps:
    - Built with modern libraries like **Redux Persist** to ensure data consistency and reliability across user sessions.
 
 ### 9. **Secure Authentication using Google OAuth**
-    - Directly login using your google account, without any hassle to enter email, and password.
+   - Directly login using your google account, without any hassle to enter email, and password.
 
 ---
 
@@ -103,7 +103,7 @@ Contributions are welcome! To contribute:
    ```bash
       git checkout -b feature-name
    ```
-3.** Commit your changes**:
+3. **Commit your changes**:
    ```bash
       git commit -m "Add new feature"
    ```
