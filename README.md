@@ -39,15 +39,6 @@ Welcome to **BookStore**, a modern and feature-rich e-commerce platform designed
 
 ## 📦 Installation
 
-Get **BookStore** running locally in just a few steps:
-
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/sparshyadav/book-store.git
-   cd book-store
-
-## 📦 Installation
-
 To run this project locally, follow these steps:
 
 1. **Clone the Repository**:
@@ -59,7 +50,7 @@ To run this project locally, follow these steps:
 ```bash
    npm install
 ```
-3. Start Development Server:
+3. **Start Development Server**:
 ```bash
    npm run dev
 ```
@@ -98,20 +89,8 @@ To run this project locally, follow these steps:
 ### 8. **Secure and Reliable**
    - Built with modern libraries like **Redux Persist** to ensure data consistency and reliability across user sessions.
 
-### 9. **Secure Authentication using Google OAuth
+### 9. **Secure Authentication using Google OAuth**
     - Directly login using your google account, without any hassle to enter email, and password.
-
----
-
-## 🌟 Demo
-
-🚧 Coming Soon! (You can replace this with a link to a live demo hosted on [Vercel](https://vercel.com/) or [Render](https://render.com/).)
-
----
-
-## 📸 Screenshots
-
-Include screenshots of the application here, such as the homepage, book details page, cart, and wishlist.  
 
 ---
 
@@ -119,18 +98,18 @@ Include screenshots of the application here, such as the homepage, book details 
 
 Contributions are welcome! To contribute:
 
-1. Fork the repository.
-2. Create a new branch for your feature:
+1. **Fork the repository**
+2. **Create a new branch for your feature**:
    ```bash
-   git checkout -b feature-name
+      git checkout -b feature-name
    ```
-3. Commit your changes:
+3.** Commit your changes**:
    ```bash
-   git commit -m "Add new feature"
-```
-4. Push to Your Branch:
-``` bash
-git push origin feature-name
+      git commit -m "Add new feature"
+   ```
+4. **Push to Your Branch**:
+   ``` bash
+      git push origin feature-name
     ```
 
 ## 📝 License
