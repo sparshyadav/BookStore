@@ -1,43 +1,50 @@
 # BookStore - E-commerce Web Application 📚🛒
 
-Welcome to **BookStore**, a feature-rich e-commerce web application for buying books online. Whether you're a book enthusiast or a bulk buyer, BookStore provides a seamless and intuitive shopping experience with features like advanced search, wishlist, reviews, bulk buying, and much more!
+Welcome to **BookStore**, a modern and feature-rich e-commerce platform designed for book lovers. Whether you're browsing for your next read or purchasing in bulk, BookStore offers a seamless, intuitive, and delightful shopping experience.
 
 ---
 
-## 🚀 Features
+## ✨ Features
 
-- **Single & Bulk Book Purchase**: Easily buy individual books or place bulk orders.
-- **Wishlist**: Save your favorite books to your wishlist for later.
-- **Cart Management**: Add and manage books in your cart before checkout.
-- **Search & Filter**: Advanced search with filters for genre, price, author, rating, and more.
-- **Book Reviews & Ratings**: Read and write reviews for books.
-- **Responsive Design**: Fully optimized for desktop, tablet, and mobile devices.
-- **Confetti Celebration**: Experience delightful animations on successful purchases.
+- **Single & Bulk Purchases**: Buy individual books or order in bulk with ease.
+- **Wishlist**: Save your favorite books for later.
+- **Cart Management**: Add, update, or remove books before checkout.
+- **Advanced Search & Filters**: Find books by genre, price, author, rating, and more.
+- **Reviews & Ratings**: Read and contribute reviews to help the community.
+- **Responsive Design**: Optimized for desktop, tablet, and mobile devices.
+- **Confetti Celebration**: Enjoy fun animations on successful purchases.
+- **Google OAuth Authentication**: Secure and hassle-free login with your Google account.
 
 ---
 
 ## 🛠️ Tech Stack
 
 ### Frontend
-- **React**: Core framework for building the user interface.
-- **Redux Toolkit**: State management for efficient data flow.
-- **Material UI (MUI)**: Elegant and customizable component library.
-- **Ant Design (AntD)**: UI library for additional rich components.
-- **Tailwind CSS**: Utility-first CSS framework for modern and responsive design.
+- **React**: Dynamic and interactive user interface.
+- **Redux Toolkit**: Efficient state management.
+- **Material UI (MUI)**: Sleek, customizable components.
+- **Ant Design (AntD)**: Rich UI elements for enhanced design.
+- **Tailwind CSS**: Modern, utility-first styling.
 
-### Backend
-- Not specified (you can update this section if applicable).
-
-### Additional Tools & Libraries
-- **Axios**: For API requests and data fetching.
-- **React Router DOM**: For seamless navigation and routing.
-- **Redux Persist**: For persisting state across sessions.
-- **React Hot Toast & React Toastify**: For notifications.
-- **React Confetti**: For fun purchase celebrations.
-- **Vitest**: Blazing-fast unit testing framework.
-- **ESLint**: Linting to ensure code quality and consistency.
+### Tools & Libraries
+- **Axios**: Seamless API requests.
+- **React Router DOM**: Smooth navigation and routing.
+- **Redux Persist**: Persistent state across sessions.
+- **React Hot Toast & React Toastify**: Elegant notifications.
+- **React Confetti**: Fun purchase celebrations.
+- **Vitest**: Fast unit testing.
+- **ESLint**: Code quality and consistency.
 
 ---
+
+## 📦 Installation
+
+Get **BookStore** running locally in just a few steps:
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/sparshyadav/book-store.git
+   cd book-store
 
 ## 📦 Installation
 
@@ -45,16 +52,16 @@ To run this project locally, follow these steps:
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/book-store.git
-   cd book-store
-```
+      git clone https://github.com/your-username/book-store.git
+      cd book-store
+   ```
 2. **Install Dependencies**
 ```bash
-npm install
+   npm install
 ```
 3. Start Development Server:
 ```bash
-npm run dev
+   npm run dev
 ```
 
 
