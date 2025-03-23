@@ -28,6 +28,7 @@ function GoogleSignIn() {
                 theme="filled_blue"
                 size="large"
                 width="200"
+                height="100"
             />
         </GoogleOAuthProvider>
     )
