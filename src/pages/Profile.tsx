@@ -42,7 +42,6 @@ function Profile() {
 
     const handleSavePersonal = () => {
         setEditPersonalDetails(false);
-        console.log("Personal Details Saved:", formData);
     };
 
     const handleAddressChange = (

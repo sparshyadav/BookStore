@@ -11,17 +11,14 @@ interface CartCounterProps {
 
 function CartCounter({ data }: CartCounterProps) {
     const { bookId, bookInCartQuantity } = data;
-    console.log("BOOKID: ", bookId);
-    console.log("Quantity: ", bookInCartQuantity);
     const [count, setCount] = useState<number>(bookInCartQuantity);
     const dispatch = useDispatch<AppDispatch>();
 
     const handleIncrease = async () => {
         const updatedQuantity = count + 1;
         try {
-            const Resposne = await updateCartItems(bookId, updatedQuantity);
+            await updateCartItems(bookId, updatedQuantity);
             toast.success("Quantity Increased Successfully! ✅");
-            console.log("RESPOSE: ", Resposne);
             setCount(updatedQuantity);
             dispatch(fetchCartItems());
         } catch (err) {

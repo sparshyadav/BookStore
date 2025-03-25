@@ -36,7 +36,6 @@ function WishlistContainer() {
     }, []);
 
     const handleRemoveWishlist = async (bookId: string) => {
-        console.log("ProductID: ", bookId);
         try {
             await removeWishlist(bookId);
             setWishlistedBooks((prevBooks) =>

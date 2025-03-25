@@ -13,11 +13,10 @@ function GoogleSignIn() {
 
         toast.success("Login Successfull 🎉");
         navigate('/');
-        console.log("Google Sign In Success: ", credentialResponse);
     }
 
     const handleError = () => {
-        console.log("Google Sign In Error")
+        toast.error("Failure While Logging In")
     }
 
     return (

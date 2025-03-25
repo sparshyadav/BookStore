@@ -36,7 +36,6 @@ function MyCartContainer() {
     (state: RootState) => state.cart
   );
 
-  console.log("ITEMS INSIDE Cart: ", items);
   useEffect(() => {
     dispatch(fetchCartItems());
   }, [dispatch]);
@@ -51,11 +50,9 @@ function MyCartContainer() {
     const updatedQuantity = book.quantityToBuy + 1;
 
     try {
-      const response = await updateCartItems(book._id, updatedQuantity);
+      await updateCartItems(book._id, updatedQuantity);
       toast.success("Quantity Increased Successfully! ✅")
-      console.log("INCREASE RESPONSE: ", response);
       dispatch(fetchCartItems());
-      console.log("Quantity increased successfully");
     } catch (err) {
       console.error("Failed to increase quantity", err);
     }
@@ -69,12 +66,9 @@ function MyCartContainer() {
         await updateCartItems(book._id, updatedQuantity);
         toast.success("Quantity Decreased Successfully! ✅")
         dispatch(fetchCartItems());
-        console.log("Quantity decreased successfully");
       } catch (err) {
         console.error("Failed to decrease quantity", err);
       }
-    } else {
-      console.log("Quantity cannot be less than 1");
     }
   };
 

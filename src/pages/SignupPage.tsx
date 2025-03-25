@@ -36,14 +36,13 @@ function SignupPage() {
         }
 
         try {
-            const response = await registerUser(email, password, mobile, name);
-            console.log("Registration Successful: ", response);
+            await registerUser(email, password, mobile, name);
 
             toast.success("Signup Successfull 🎉");
             navigate('/login');
         }
         catch (error) {
-            console.log("Error while loginning :", error);
+            console.error("Error while loginning :", error);
             toast.error("Signup Failed. Please Check Your Credentials");
         }
     }

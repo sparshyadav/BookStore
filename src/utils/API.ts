@@ -205,7 +205,6 @@ export const updateCartItems = async (bookId: string | undefined, quantity: numb
             }
         });
 
-        console.log("RESPONSE FROM API CALL: ", response);
         return response.status;
     } catch (error) {
         console.error("Updating Cart Items Failed", error);
@@ -230,7 +229,6 @@ export const addOrder = async (allOrders: {
             }
         });
 
-        console.log("RESPONSE FROM API CALL: ", response);
         return response.status;
     } catch (error) {
         console.error("Updating Cart Items Failed", error);

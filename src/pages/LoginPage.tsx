@@ -28,7 +28,6 @@ function LoginPage() {
 
         try {
             const response = await loginUser(email, password);
-            console.log("Login Successful: ", response);
 
             localStorage.setItem("token", JSON.stringify({
                 token: response.result.accessToken,
@@ -39,7 +38,7 @@ function LoginPage() {
             navigate('/');
         }
         catch (error) {
-            console.log("Error while loginning :", error);
+            console.error("Error while loginning :", error);
             toast.error("Login Failed. Please Check Your Credentials");
         }
     }

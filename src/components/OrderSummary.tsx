@@ -19,7 +19,6 @@ function OrderSummary() {
     const { items } = useSelector(
         (state: RootState) => state.cart
     );
-    console.log("Items in Order: ", items);
 
     const orderItems = items.map((book) => ({
         product_id: book.product_id._id,
@@ -34,7 +33,6 @@ function OrderSummary() {
             if (status === 200 || status === 201) {
                 toast.success("Order placed successfully!");
                 navigate("/orderconfirm")
-                console.log("Order created successfully with status: ", status);
             }
         } catch (error) {
             toast.error("Failed to place order");
