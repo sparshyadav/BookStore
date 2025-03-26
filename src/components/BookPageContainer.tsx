@@ -70,7 +70,7 @@ function BookPageContainer() {
         try {
             if (isWishlisted) {
                 await removeWishlist(bookId);
-                toast.error("Item Removed From Wishlist! ❌");
+                toast.success("Item Removed From Wishlist!");
                 setIsWishlisted(false);
             } else {
                 await addWishlist(bookId);
