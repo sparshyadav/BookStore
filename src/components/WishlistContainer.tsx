@@ -10,6 +10,7 @@ import BookCover6 from '../assets/BookCover6.png';
 import BookCover7 from '../assets/BookCover7.png';
 import BookCover8 from '../assets/BookCover8.png';
 import BookCover9 from '../assets/BookCover9.png';
+import { toast } from "react-toastify";
 
 function WishlistContainer() {
     const [isOpen, setIsOpen] = useState<boolean>(true);
@@ -41,6 +42,7 @@ function WishlistContainer() {
             setWishlistedBooks((prevBooks) =>
                 prevBooks.filter((book) => book.product_id._id !== bookId)
             );
+            toast.success("Item Removed from Wishlist")
         } catch (error) {
             console.error("Error removing wishlist item:", error);
         }
