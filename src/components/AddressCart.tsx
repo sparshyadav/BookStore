@@ -32,7 +32,7 @@ function AddressCart() {
                             <div className='w-[100%] flex flex-col !mb-3 p-3 h-auto gap-y-5'>
                                 <div className='w-full md:w-[80%] flex flex-col gap-y-5'>
                                     <div className='flex flex-col md:flex-row gap-y-5 md:gap-x-5 w-[100%]'>
-                                        <div className='flex flex-col justify-left'>
+                                        <div className='flex flex-col justify-left !pr-[10px]'>
                                             <p className='text-[12px]'>
                                                 Full Name
                                             </p>
@@ -43,7 +43,7 @@ function AddressCart() {
                                             />
                                         </div>
 
-                                        <div className='flex flex-col justify-left'>
+                                        <div className='flex flex-col justify-left !pr-[10px]'>
                                             <p className='text-[12px]'>
                                                 Mobile Number
                                             </p>
@@ -67,14 +67,14 @@ function AddressCart() {
                                                 <p className='text-[#A03037] font-semibold cursor-pointer'>Edit</p>
                                             </div>
                                         </div>
-                                        <div>
+                                        <div className='!pr-[10px]'>
                                             <p>Address</p>
                                             <textarea
                                                 value={"BridgeLabz Solutions LLP, No. 42, 14th Main, 15th Cross, Sector 4, Opp to BDA complex, near Kumarakom restaurant, HSR Layout, Bangalore"}
                                                 className='border border-[#DCDCDC] w-[100%] h-[85px] text-[12px] !p-[10px] text-[#878787] align-left resize-none rounded-[3px] bg-[#F5F5F5]'
                                             />
                                         </div>
-                                        <div className='flex flex-col md:flex-row gap-y-5 md:gap-x-5'>
+                                        <div className='flex flex-col md:flex-row gap-y-5 md:gap-x-5 !pr-[10px]'>
                                             <div className='flex flex-col justify-left'>
                                                 <p className='text-[12px]'>
                                                     City/Town
