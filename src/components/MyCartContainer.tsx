@@ -143,7 +143,7 @@ function MyCartContainer() {
                   </div>
                 ))}
               </div>
-              <div className='flex justify-end w-[90%] !mb-[25px]'>
+              <div className='flex justify-end w-[95%] !mb-[25px]'>
                 <button className='w-[150px] h-[35px] bg-[#3371B5] text-white rounded-[2px]'>CONTINUE</button>
               </div>
             </div>
