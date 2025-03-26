@@ -132,7 +132,7 @@ function BooksContainer() {
             </div>
 
             {hasBooks && searchQuery && totalFilteredBooks === 0 && (
-                <div className="w-[67%] py-8 text-center text-gray-500">
+                <div className="w-[67%] py-8 text-center text-gray-500 min-h-[55vh]">
                     No books found matching "{searchQuery}"
                 </div>
             )}
