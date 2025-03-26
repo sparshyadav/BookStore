@@ -11,6 +11,7 @@ function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorField, setErrorField] = useState("");
+    const [disableLoginBtn, setDisableLoginBtn] = useState(false);
 
     const navigate = useNavigate();
 
@@ -25,6 +26,8 @@ function LoginPage() {
             setErrorField("password");
             return;
         }
+
+        setDisableLoginBtn(true);
 
         try {
             const response = await loginUser(email, password);
@@ -105,8 +108,10 @@ function LoginPage() {
                     </div>
                     <div className='w-[75%] flex flex-col gap-3'>
                         <button
-                            className="bg-[#A03037] w-[100%] h-[40px] text-white rounded-[3px] hover:bg-[#861F2A] transition duration-300 cursor-pointer"
+                            className={`w-[100%] h-[40px] rounded-[3px] text-white transition duration-300 
+        ${disableLoginBtn ? "bg-gray-400 cursor-not-allowed" : "bg-[#A03037] hover:bg-[#861F2A] cursor-pointer"}`}
                             onClick={handleSubmit}
+                            disabled={disableLoginBtn}
                         >
                             Login
                         </button>
