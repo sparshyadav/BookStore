@@ -1,7 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-function AddressCart() {
-    const [isAccordionOpen, setIsAccordionOpen] = useState(true);
+type MyCartContainerProps = {
+    isContinueClicked: boolean;
+}
+
+function AddressCart({isContinueClicked}:MyCartContainerProps) {
+    const [isAccordionOpen, setIsAccordionOpen] = useState(isContinueClicked);
+
+    useEffect(() => {
+        setIsAccordionOpen(isContinueClicked);
+    }, [isContinueClicked]);
 
     const toggleAccordion = () => {
         setIsAccordionOpen(!isAccordionOpen);

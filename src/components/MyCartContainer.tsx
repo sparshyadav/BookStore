@@ -18,7 +18,11 @@ import { toast } from 'react-toastify';
 
 const { Option } = Select;
 
-function MyCartContainer() {
+type MyCartContainerProps = {
+  setIsContinueClicked: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function MyCartContainer({setIsContinueClicked}: MyCartContainerProps) {
   const [selectedAddress, setSelectedAddress] = useState(null);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -144,7 +148,7 @@ function MyCartContainer() {
                 ))}
               </div>
               <div className='flex justify-end w-[95%] !mb-[25px]'>
-                <button className='w-[150px] h-[35px] bg-[#3371B5] text-white rounded-[2px]'>CONTINUE</button>
+                <button onClick={()=>setIsContinueClicked((prev: boolean)=>!prev)} className='w-[150px] h-[35px] bg-[#3371B5] text-white rounded-[2px]'>CONTINUE</button>
               </div>
             </div>
           </div>
