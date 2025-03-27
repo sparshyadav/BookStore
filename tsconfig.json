@@ -5,6 +5,18 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
-    "types": ["vitest"]
-  }
+    "target": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "jsx": "react-jsx", // Enables JSX support for React
+    "esModuleInterop": true, // Fixes the ts-jest warning
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "types": ["jest", "@testing-library/jest-dom"] // For Jest and Testing Library types
+  },
+  "include": ["src/**/*", "jest.setup.ts"],
+  "exclude": ["node_modules", "dist"]
 }
