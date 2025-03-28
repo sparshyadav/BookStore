@@ -185,6 +185,38 @@ describe('BooksContainer', () => {
     expect(bookCards[1]).toHaveTextContent('Book 2');
   });
 
+  test('sorts books by price high-to-low', () => {
+    const mockStore = configureStore({
+      reducer: {
+        books: () => ({
+          allBooks: [
+            { _id: '1', bookName: 'Book 1', discountPrice: 20, quantity: 5, rating: 4, author: 'Author 1', description: 'Desc 1' },
+            { _id: '2', bookName: 'Book 2', discountPrice: 10, quantity: 3, rating: 3, author: 'Author 2', description: 'Desc 2' },
+          ],
+          status: 'succeeded',
+          error: null,
+        }),
+        search: () => ({ query: '' }),
+      },
+    });
+
+    const { rerender } = render(
+      <Provider store={mockStore}>
+        <BooksContainer />
+      </Provider>
+    );
+
+    rerender(
+      <Provider store={mockStore}>
+        <BooksContainer />
+      </Provider>
+    );
+    const bookCards = screen.getAllByTestId('book-card');
+
+    expect(bookCards[0]).toHaveTextContent('Book 1');
+    expect(bookCards[1]).toHaveTextContent('Book 2');
+  });
+
   test('sorts books by price low-to-high when sortValue is set', () => {
     const mockStore = configureStore({
       reducer: {
