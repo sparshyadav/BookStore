@@ -29,8 +29,15 @@ export const getAllBooks = async () => {
         return response.data;
     }
     catch (error) {
-        console.error("Fetching Books Failed", error);
+        console.error("Error While Fetching Book via Main API: ", error);
+        try{
+            const response=await axios.get("http://localhost:3000/bookList");
+            return response.data;
+        }
+        catch(error){
+            console.error("Fetching Books Failed", error);
         throw error;
+        }
     }
 }
 
