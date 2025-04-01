@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for components/BooksContainer.tsx</title>
+    <title>Code coverage report for redux/cartSlice.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">components</a> BooksContainer.tsx</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">redux</a> cartSlice.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">89.55% </span>
+                <span class="strong">27.27% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>60/67</span>
+                <span class='fraction'>15/55</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">62.5% </span>
+                <span class="strong">18.18% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>35/56</span>
+                <span class='fraction'>2/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">17.64% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>12/16</span>
+                <span class='fraction'>3/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">92.06% </span>
+                <span class="strong">27.77% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>58/63</span>
+                <span class='fraction'>15/54</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -235,351 +235,384 @@
 <a name='L170'></a><a href='#L170'>170</a>
 <a name='L171'></a><a href='#L171'>171</a>
 <a name='L172'></a><a href='#L172'>172</a>
-<a name='L173'></a><a href='#L173'>173</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-yes">29x</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
+<a name='L173'></a><a href='#L173'>173</a>
+<a name='L174'></a><a href='#L174'>174</a>
+<a name='L175'></a><a href='#L175'>175</a>
+<a name='L176'></a><a href='#L176'>176</a>
+<a name='L177'></a><a href='#L177'>177</a>
+<a name='L178'></a><a href='#L178'>178</a>
+<a name='L179'></a><a href='#L179'>179</a>
+<a name='L180'></a><a href='#L180'>180</a>
+<a name='L181'></a><a href='#L181'>181</a>
+<a name='L182'></a><a href='#L182'>182</a>
+<a name='L183'></a><a href='#L183'>183</a>
+<a name='L184'></a><a href='#L184'>184</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">48x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import { Select } from "antd";
-import { useEffect, useState, useMemo } from "react";
-import BookCard from "./BookCard";
-import BookCardShimmer from "./BookCardShimmer";
-import { Pagination } from 'antd';
-import BookCover1 from '../assets/BookCover1.png';
-import BookCover2 from '../assets/BookCover2.png';
-import BookCover3 from '../assets/BookCover3.png';
-import BookCover4 from '../assets/BookCover4.png';
-import BookCover5 from '../assets/BookCover5.png';
-import BookCover6 from '../assets/BookCover6.png';
-import BookCover7 from '../assets/BookCover7.png';
-import BookCover8 from '../assets/BookCover8.png';
-import BookCover9 from '../assets/BookCover9.png';
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../redux/store";
-import { Book, fetchBooks } from "../redux/bookSlice";
-import { selectSearchQuery } from "../redux/searchSlice";
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { getCartItems, removeCartItems } from "../utils/API";
+import { toast } from "react-toastify";
 &nbsp;
-const { Option } = Select;
-&nbsp;
-function BooksContainer() {
-    const [sortValue, setSortValue] = useState&lt;string&gt;("relevance");
-    const [currentPage, setCurrentPage] = useState&lt;number&gt;(() =&gt; {
-        return Number(localStorage.getItem("currentPage")) || 1;
-    });
-    const booksPerPage = 12;
-&nbsp;
-    const dispatch = useDispatch&lt;AppDispatch&gt;();
-    const { allBooks, status } = useSelector((state: RootState) =&gt; state.books);
-    const searchQuery = useSelector(selectSearchQuery);
-&nbsp;
-    useEffect(() =&gt; {
-        if (status === "idle") {
-            dispatch(fetchBooks());
-        }
-    }, [dispatch, status]);
-&nbsp;
-    useEffect(() =&gt; {
-        setCurrentPage(1);
-    }, [searchQuery]);
-&nbsp;
-    useEffect(() =&gt; {
-        localStorage.setItem("currentPage", String(currentPage));
-    }, [currentPage]);
-&nbsp;
-    const bookCovers = [
-        BookCover1, BookCover2, BookCover3, BookCover4,
-        BookCover5, BookCover6, BookCover7, BookCover8,
-        BookCover9
-    ];
-&nbsp;
-    const filteredAndSortedBooks = useMemo(() =&gt; {
-        let filteredBooks = [...allBooks];
-&nbsp;
-        if (searchQuery.trim() !== "") {
-            const query = searchQuery.toLowerCase();
-            filteredBooks = filteredBooks.filter(book =&gt; {
-                const bookTitle = (book.bookName || <span class="branch-1 cbranch-no" title="branch not covered" >book.title </span>|| <span class="branch-2 cbranch-no" title="branch not covered" >"")</span>.toString().toLowerCase();
-                const bookAuthor = (book.author || <span class="branch-1 cbranch-no" title="branch not covered" >"")</span>.toString().toLowerCase();
-                // const bookDescription = (book.description || "").toString().toLowerCase();
-                const bookDescription = String(book.description || <span class="branch-1 cbranch-no" title="branch not covered" >"")</span>.toLowerCase();
-&nbsp;
-                return bookTitle.includes(query) ||
-                    bookAuthor.includes(query) ||
-                    bookDescription.includes(query);
-            });
-        }
-&nbsp;
-        switch (sortValue) {
-            case "low-to-high":
-                return filteredBooks.sort((a, b) =&gt; (a.discountPrice ?? <span class="branch-1 cbranch-no" title="branch not covered" >0)</span> - (b.discountPrice ?? <span class="branch-1 cbranch-no" title="branch not covered" >0)</span>);
-<span class="branch-1 cbranch-no" title="branch not covered" >            case "high-to-low":</span>
-<span class="cstat-no" title="statement not covered" >                return filteredBooks.sort(<span class="fstat-no" title="function not covered" >(a</span>, b) =&gt; <span class="cstat-no" title="statement not covered" >(b.discountPrice ?? 0) - (a.discountPrice ?? 0))</span>;</span>
-<span class="branch-2 cbranch-no" title="branch not covered" >            case "recommended":</span>
-<span class="cstat-no" title="statement not covered" >                return filteredBooks.sort(<span class="fstat-no" title="function not covered" >(a</span>, b) =&gt; <span class="cstat-no" title="statement not covered" >(b.quantity ?? 0) - (a.quantity ?? 0))</span>;</span>
-            default:
-                return filteredBooks;
-        }
-    }, [allBooks, sortValue, searchQuery]);
-&nbsp;
-    const handleChange = <span class="fstat-no" title="function not covered" >(v</span>alue: string) =&gt; {
-<span class="cstat-no" title="statement not covered" >        setSortValue(value);</span>
-<span class="cstat-no" title="statement not covered" >        setCurrentPage(1);</span>
-    };
-&nbsp;
-    const hasBooks = status === "succeeded" &amp;&amp; allBooks.length &gt; 0;
-    const startIndex = (currentPage - 1) * booksPerPage;
-    const endIndex = startIndex + booksPerPage;
-    const displayedBooks = hasBooks ? filteredAndSortedBooks.slice(startIndex, endIndex) : [];
-    const totalFilteredBooks = hasBooks ? filteredAndSortedBooks.length : 0;
-&nbsp;
-    const handlePageChange = <span class="fstat-no" title="function not covered" >(p</span>age: number) =&gt; {
-<span class="cstat-no" title="statement not covered" >        setCurrentPage(page);</span>
-    };
-&nbsp;
-    const renderShimmerPlaceholders = () =&gt; {
-        return Array(booksPerPage).fill(0).map((_, index) =&gt; (
-            &lt;BookCardShimmer key={`shimmer-${index}`} /&gt;
-        ));
-    };
-&nbsp;
-    return (
-        &lt;div className='w-[100%] flex flex-col justify-center items-center !mt-[60px] z-100 !mb-[25px]'&gt;
-            &lt;div className="w-[67%] h-[100px] flex items-center max-sm:w-[92%]"&gt;
-                &lt;div className='w-[100%] h-[60%] py-10 flex justify-between items-center'&gt;
-                    &lt;div className="text-[30px] flex items-center gap-[10px] max-sm:gap-[2px] max-md:gap-[5px]"&gt;
-                        &lt;p className="text-[35px] max-md:text-[25px] max-sm:text-[20px]"&gt;Books&lt;/p&gt;
-                        &lt;p className="text-[12px] text-[grey] !mt-2 max-sm:!mt-1"&gt;
-                            {hasBooks ?
-                                searchQuery ?
-                                    `(${totalFilteredBooks} of ${allBooks.length} Books)` :
-                                    `(${allBooks.length} Books)` :
-                                "(Loading...)"
-                            }
-                        &lt;/p&gt;
-                    &lt;/div&gt;
-                    &lt;div className=""&gt;
-                        &lt;Select
-                            value={sortValue}
-                            onChange={handleChange}
-                            className="w-[200px] max-md:w-[150px] max-sm:w-[150px]"
-                            dropdownStyle={{ zIndex: 10 }}
-                            disabled={!hasBooks}
-                        &gt;
-                            &lt;Option value="relevance"&gt;Sort by Relevance&lt;/Option&gt;
-                            &lt;Option value="high-to-low"&gt;Price: High to Low&lt;/Option&gt;
-                            &lt;Option value="low-to-high"&gt;Price: Low to High&lt;/Option&gt;
-                            &lt;Option value="recommended"&gt;Recommended&lt;/Option&gt;
-                        &lt;/Select&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
-&nbsp;
-            {hasBooks &amp;&amp; searchQuery &amp;&amp; totalFilteredBooks === 0 &amp;&amp; (
-                &lt;div className="w-[67%] py-8 text-center text-gray-500 min-h-[55vh]"&gt;
-                    No books found matching "{searchQuery}"
-                &lt;/div&gt;
-            )}
-&nbsp;
-            &lt;div className="w-[67%] max-w-7xl flex max-sm:w-[92%] flex-wrap gap-[25px] justify-center items-center !mb-[50px] max-md:w-[90%] max-xl:w-[80%] max-[1515px]:w-[80%]"&gt;
-                {!hasBooks
-                    ? renderShimmerPlaceholders()
-                    : displayedBooks.map((book: Book, i: number) =&gt; (
-                        &lt;BookCard
-                            key={book._id || <span class="branch-1 cbranch-no" title="branch not covered" >i}</span>
-                            data={{
-                                ...book,
-                                cover: bookCovers[i % bookCovers.length],
-                                discountPrice: book.discountPrice ?? <span class="branch-1 cbranch-no" title="branch not covered" >book.price,</span>
-                                bookName: book.bookName ?? <span class="branch-1 cbranch-no" title="branch not covered" >book.title,</span>
-                                rating: book.rating ?? <span class="branch-1 cbranch-no" title="branch not covered" >0,</span>
-                                quantity: book.quantity ?? <span class="branch-1 cbranch-no" title="branch not covered" >1,</span>
-                                _id: book._id
-                            }}
-                        /&gt;
-                    ))
-                }
-            &lt;/div&gt;
-            &lt;Pagination
-                defaultCurrent={1}
-                current={currentPage}
-                total={totalFilteredBooks}
-                pageSize={booksPerPage}
-                onChange={handlePageChange}
-                showSizeChanger={false}
-                disabled={!hasBooks}
-            /&gt;
-        &lt;/div&gt;
-    );
+interface Product {
+    quantityToBuy: number;
+    description: string;
+    discountPrice: number;
+    bookImage: string | null;
+    _id: string;
+    admin_user_id: string;
+    bookName: string;
+    author: string;
 }
 &nbsp;
-export default BooksContainer;</pre></td></tr></table></pre>
+interface User {
+    address: string[];
+    isVerified: boolean;
+    _id: string;
+    fullName: string;
+    email: string;
+    phone?: string;
+}
+&nbsp;
+export interface CartItem {
+    _id: string;
+    createdAt: string;
+    updatedAt: string;
+    product_id: Product;
+    quantityToBuy: number;
+    user_id: User;
+    __v: number;
+}
+&nbsp;
+interface CartState {
+    items: CartItem[];
+    totalCount: number;
+    status: "idle" | "loading" | "succeeded" | "failed";
+    error: string | null;
+}
+&nbsp;
+const calculateTotalCount = (items: CartItem[]) =&gt;
+    items.reduce(<span class="fstat-no" title="function not covered" >(s</span>um, item) =&gt; <span class="cstat-no" title="statement not covered" >sum + item.quantityToBuy,</span> 0);
+&nbsp;
+const loadCartFromLocalStorage = (): CartState =&gt; {
+    const storedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+    return {
+        items: storedCart,
+        totalCount: calculateTotalCount(storedCart),
+        status: "idle",
+        error: null,
+    };
+};
+&nbsp;
+export const fetchCartItems = createAsyncThunk&lt;CartItem[]&gt;(
+    "cart/fetchCartItems",
+<span class="fstat-no" title="function not covered" >    async </span>() =&gt; {
+        const response = <span class="cstat-no" title="statement not covered" >await getCartItems();</span>
+<span class="cstat-no" title="statement not covered" >        return response;</span>
+    }
+);
+&nbsp;
+export const deleteCartItem = createAsyncThunk&lt;string, string&gt;(
+    "cart/deleteCartItem",
+<span class="fstat-no" title="function not covered" >    async </span>(bookId) =&gt; {
+        const status = <span class="cstat-no" title="statement not covered" >await removeCartItems(bookId);</span>
+<span class="cstat-no" title="statement not covered" >        if (status === 200) {</span>
+<span class="cstat-no" title="statement not covered" >            toast.success("Book Removed Successfully! ✅");</span>
+<span class="cstat-no" title="statement not covered" >            return bookId;</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >            throw new Error("Failed to remove the cart item");</span>
+        }
+    }
+);
+&nbsp;
+const initialState: CartState = loadCartFromLocalStorage();
+&nbsp;
+const cartSlice = createSlice({
+    name: "cart",
+    initialState,
+    reducers: {
+        addItemToCart: <span class="fstat-no" title="function not covered" >(</span>
+            state,
+            action: PayloadAction&lt;{ product: Product; quantityToAdd: number }&gt;
+        ) =&gt; {
+            const { product, quantityToAdd } = <span class="cstat-no" title="statement not covered" >action.payload;</span>
+&nbsp;
+            const existingItem = <span class="cstat-no" title="statement not covered" >state.items.find(</span>
+<span class="fstat-no" title="function not covered" >                (i</span>tem) =&gt; <span class="cstat-no" title="statement not covered" >item.product_id._id === product._id</span>
+            );
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (existingItem) {</span>
+<span class="cstat-no" title="statement not covered" >                existingItem.quantityToBuy += quantityToAdd;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                toast.success(</span>
+                    `Updated ${existingItem.product_id.bookName} quantity to ${existingItem.quantityToBuy}`
+                );
+            } else {
+                const newItem: CartItem = <span class="cstat-no" title="statement not covered" >{</span>
+                    _id: Date.now().toString(),
+                    createdAt: new Date().toISOString(),
+                    updatedAt: new Date().toISOString(),
+                    product_id: product,
+                    quantityToBuy: quantityToAdd,
+                    user_id: {
+                        address: [],
+                        isVerified: false,
+                        _id: "guest",
+                        fullName: "Guest User",
+                        email: "guest@example.com",
+                    },
+                    __v: 0,
+                };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                state.items.push(newItem);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                toast.success(</span>
+                    `Added ${product.bookName} to the cart with quantity ${quantityToAdd}`
+                );
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            state.totalCount = calculateTotalCount(state.items);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            localStorage.setItem("cart", JSON.stringify(state.items));</span>
+        },
+&nbsp;
+        updateItemQuantity: <span class="fstat-no" title="function not covered" >(</span>
+            state,
+            action: PayloadAction&lt;{ id: string; quantityToBuy: number }&gt;
+        ) =&gt; {
+            const existingItem = <span class="cstat-no" title="statement not covered" >state.items.find(</span>
+<span class="fstat-no" title="function not covered" >                (i</span>tem) =&gt; <span class="cstat-no" title="statement not covered" >item._id === action.payload.id</span>
+            );
+<span class="cstat-no" title="statement not covered" >            <span class="missing-if-branch" title="if path not taken" >I</span>if (existingItem) {</span>
+<span class="cstat-no" title="statement not covered" >                existingItem.quantityToBuy = action.payload.quantityToBuy;</span>
+<span class="cstat-no" title="statement not covered" >                state.totalCount = calculateTotalCount(state.items);</span>
+<span class="cstat-no" title="statement not covered" >                localStorage.setItem("cart", JSON.stringify(state.items));</span>
+            }
+        },
+    },
+    extraReducers: (builder) =&gt; {
+        builder
+            .addCase(fetchCartItems.pending, <span class="fstat-no" title="function not covered" >(s</span>tate) =&gt; {
+<span class="cstat-no" title="statement not covered" >                state.status = "loading";</span>
+            })
+            .addCase(
+                fetchCartItems.fulfilled,
+<span class="fstat-no" title="function not covered" >                (s</span>tate, action: PayloadAction&lt;CartItem[]&gt;) =&gt; {
+<span class="cstat-no" title="statement not covered" >                    state.status = "succeeded";</span>
+<span class="cstat-no" title="statement not covered" >                    state.items = action.payload;</span>
+<span class="cstat-no" title="statement not covered" >                    state.totalCount = calculateTotalCount(action.payload);</span>
+<span class="cstat-no" title="statement not covered" >                    localStorage.setItem("cart", JSON.stringify(state.items));</span>
+                }
+            )
+            .addCase(fetchCartItems.rejected, <span class="fstat-no" title="function not covered" >(s</span>tate, action) =&gt; {
+<span class="cstat-no" title="statement not covered" >                state.status = "failed";</span>
+<span class="cstat-no" title="statement not covered" >                state.error =</span>
+                    action.error.message || "Failed to fetch cart items";
+            })
+            .addCase(deleteCartItem.pending, <span class="fstat-no" title="function not covered" >(s</span>tate) =&gt; {
+<span class="cstat-no" title="statement not covered" >                state.status = "loading";</span>
+            })
+            .addCase(
+                deleteCartItem.fulfilled,
+<span class="fstat-no" title="function not covered" >                (s</span>tate, action: PayloadAction&lt;string&gt;) =&gt; {
+<span class="cstat-no" title="statement not covered" >                    state.status = "succeeded";</span>
+<span class="cstat-no" title="statement not covered" >                    state.items = state.items.filter(</span>
+<span class="fstat-no" title="function not covered" >                        (i</span>tem) =&gt; <span class="cstat-no" title="statement not covered" >item._id !== action.payload</span>
+                    );
+<span class="cstat-no" title="statement not covered" >                    state.totalCount = calculateTotalCount(state.items);</span>
+<span class="cstat-no" title="statement not covered" >                    localStorage.setItem("cart", JSON.stringify(state.items));</span>
+                }
+            )
+            .addCase(deleteCartItem.rejected, <span class="fstat-no" title="function not covered" >(s</span>tate, action) =&gt; {
+<span class="cstat-no" title="statement not covered" >                state.status = "failed";</span>
+<span class="cstat-no" title="statement not covered" >                state.error =</span>
+                    action.error.message || "Failed to remove cart item";
+            });
+    },
+});
+&nbsp;
+export const { addItemToCart, updateItemQuantity } = cartSlice.actions;
+export default cartSlice.reducer;
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
