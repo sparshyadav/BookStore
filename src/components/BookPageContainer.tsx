@@ -38,7 +38,7 @@ function BookPageContainer() {
 
     const { items } = useSelector((state: RootState) => state.cart);
     const bookInCart = items.find((book) => book.product_id._id === bookId);
-    const bookInCartQuantity = bookInCart?.quantityToBuy || 0;
+    const bookInCartQuantity = bookInCart?.quantityToBuy ?? 0;
     const showCounter = bookInCartQuantity > 0;
 
     const isCurrentBookWishlisted = wishlistedBooks.some((book) => book.product_id._id === bookId);
@@ -62,7 +62,7 @@ function BookPageContainer() {
     }, [wishlistedBooks, bookId]);
 
     useEffect(() => {
-        const tokenData = JSON.parse(localStorage.getItem("token") || "null");
+        const tokenData = JSON.parse(localStorage.getItem("token") ?? "null");
         setIsLoggedIn(!!tokenData?.token);
     }, []);
 
@@ -115,16 +115,20 @@ function BookPageContainer() {
             <div className='w-[68%] flex justify-between max-md:w-[90%] max-md:flex-col max-md:justify-center max-md:items-center max-sm:flex-col max-sm:justify-center max-sm:items-center'>
                 <div className='w-[35%] h-[500px] flex max-md:w-[45%] max-sm:w-[90%]'>
                     <div className='w-[15%] h-[200px]'>
-                        <div className='h-[65px] w-[100%] border border-black flex justify-center items-center hover:cursor-pointer'>
-                            <img src={data.cover} className='h-[62px] !p-[2px]' onClick={() => setShowImage1(true)} />
+                        <div className='h-[65px] w-[100%] border border-black flex justify-center items-center hover:cursor-pointer'  >
+                            <button style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}>
+                                <img src={data.cover} alt='Not Found' className='h-[62px] !p-[2px]' onClick={() => setShowImage1(true)} />
+                            </button>
                         </div>
-                        <div className='h-[65px] w-[100%] border border-black flex justify-center items-center hover:cursor-pointer'>
-                            <img src={bookImage2} className='h-[62px] !p-[2px]' onClick={() => setShowImage1(false)} />
+                        <div className='h-[65px] w-[100%] border border-black flex justify-center items-center hover:cursor-pointer' >
+                            <button style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}>
+                                <img src={bookImage2} alt='Not Found' className='h-[62px] !p-[2px]' onClick={() => setShowImage1(false)} />
+                            </button>
                         </div>
                     </div>
                     <div className='w-[85%] flex flex-col gap-2.5'>
                         <div className='w-[100%] h-[375px] border border-[grey] flex justify-center items-center max-[1050px]:h-[250px]'>
-                            <img src={showImage1 ? data.cover : bookImage2} className='h-[90%] max-[1050px]:h-[70%]' />
+                            <img src={showImage1 ? data.cover : bookImage2} alt='Not Found' className='h-[90%] max-[1050px]:h-[70%]' />
                         </div>
                         <div className="w-[100%] flex flex-col lg:flex-row justify-between gap-4 lg:gap-6 lg:w-full">
                             {showCounter ? (

@@ -19,7 +19,7 @@ function AddressCart({isContinueClicked}:MyCartContainerProps) {
         <div className="!mb-[50px] flex flex-col items-center px-4">
             <div className="w-[68%] mt-[60px] max-[1020px]:w-[90%] max-md:w-[90%]">
                 <div className='border border-[#acabab] w-full max-w-[775px] flex flex-col'>
-                    <div
+                    <button
                         className='!py-[15px] w-full flex justify-between md:flex-row items-center max-[550px]:!mt-[0px] max-[550px]:gap-[15px] max-[550px]:!px-[10px] cursor-pointer'
                         onClick={toggleAccordion}
                     >
@@ -34,7 +34,7 @@ function AddressCart({isContinueClicked}:MyCartContainerProps) {
                                 Add New Address
                             </button>
                         </div>
-                    </div>
+                    </button>
                     {isAccordionOpen && (
                         <div className='!pl-[15px] min-h-[250px] max-[550px]:!ml-[0px] md:min-h-[250px] w-full max-w-[775px] flex flex-col p-4 max-[550px]:h-auto'>
                             <div className='w-[100%] flex flex-col !mb-3 p-3 h-auto gap-y-5'>

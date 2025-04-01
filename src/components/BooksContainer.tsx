@@ -58,7 +58,8 @@ function BooksContainer() {
             filteredBooks = filteredBooks.filter(book => {
                 const bookTitle = (book.bookName || book.title || "").toString().toLowerCase();
                 const bookAuthor = (book.author || "").toString().toLowerCase();
-                const bookDescription = (book.description || "").toString().toLowerCase();
+                // const bookDescription = (book.description || "").toString().toLowerCase();
+                const bookDescription = String(book.description || "").toLowerCase();
 
                 return bookTitle.includes(query) ||
                     bookAuthor.includes(query) ||
