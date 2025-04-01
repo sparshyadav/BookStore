@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for pages/PleaseLoginPage.tsx</title>
+    <title>Code coverage report for pages/OrderConfirmPage.tsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">pages</a> PleaseLoginPage.tsx</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">pages</a> OrderConfirmPage.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -78,28 +78,12 @@
 <a name='L13'></a><a href='#L13'>13</a>
 <a name='L14'></a><a href='#L14'>14</a>
 <a name='L15'></a><a href='#L15'>15</a>
-<a name='L16'></a><a href='#L16'>16</a>
-<a name='L17'></a><a href='#L17'>17</a>
-<a name='L18'></a><a href='#L18'>18</a>
-<a name='L19'></a><a href='#L19'>19</a>
-<a name='L20'></a><a href='#L20'>20</a>
-<a name='L21'></a><a href='#L21'>21</a>
-<a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a>
-<a name='L24'></a><a href='#L24'>24</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L16'></a><a href='#L16'>16</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -109,29 +93,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { NavLink } from 'react-router-dom';
-import pleaseLoginImage from '../assets/please-login-image.svg';
-import Navbar from '../components/Navbar';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import Navbar from '../components/Navbar'
+import OrderConfirmContainer from '../components/OrderConfirmContainer'
+import Footer from '../components/Footer'
 &nbsp;
-function PleaseLoginPage() {
+function OrderConfirmPage() {
     return (
         &lt;&gt;
             &lt;Navbar /&gt;
-            &lt;div className="flex justify-center items-center h-[100vh] w-[100%]"&gt;
-                &lt;div className="w-[275px] flex flex-col items-center justify-center"&gt;
-                    &lt;p className="text-[25px]"&gt;Please Login&lt;/p&gt;
-                    &lt;p className="text-[#9D9D9D] text-[15px]"&gt;Login to view items in your wishlist&lt;/p&gt;
-                    &lt;img className="h-[75px] w-[65px] !my-[25px]" src={pleaseLoginImage} alt='Please Login' /&gt;
-                    &lt;NavLink to={'/login'}&gt;
-                        &lt;button className='border border-[#A03037] w-[130px] h-[35px] text-[#A03037] text-[12px] cursor-pointer hover:bg-[#A03037] hover:text-white transition-all duration-300'&gt;Login/Signup&lt;/button&gt;
-                    &lt;/NavLink&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
+            &lt;OrderConfirmContainer /&gt;
+            &lt;Footer /&gt;
         &lt;/&gt;
     )
 }
 &nbsp;
-export default PleaseLoginPage
+export default OrderConfirmPage
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
