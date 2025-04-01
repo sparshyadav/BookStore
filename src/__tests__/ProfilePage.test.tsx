@@ -4,7 +4,6 @@ import { MemoryRouter } from "react-router-dom";
 import { store } from "../redux/store";
 import Profile from "../pages/Profile";
 
-// Mock Navbar and Footer since they’re imported in Profile
 jest.mock("../components/Navbar", () => () => <div data-testid="mock-navbar">Navbar</div>);
 jest.mock("../components/Footer", () => () => <div data-testid="mock-footer">Footer</div>);
 
@@ -27,7 +26,6 @@ describe("Profile Page", () => {
   test("renders user information", () => {
     renderWithProviders(<Profile />);
     
-    // Use getByText since data is synchronously available from initial state
     expect(screen.getByRole("textbox", { name: /full name/i })).toHaveValue("John Doe");
 
     expect(screen.getByRole("textbox",{name:/email/i})).toHaveValue("john@example.com");

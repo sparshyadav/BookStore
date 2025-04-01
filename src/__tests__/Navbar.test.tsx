@@ -3,9 +3,7 @@ import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import { store } from "../redux/store";
 import Navbar from "../components/Navbar";
-import { setSearchQuery } from "../redux/searchSlice";
 
-// Mock Local Storage
 const mockLocalStorage = (userData: object | null) => {
   Storage.prototype.getItem = jest.fn(() =>
     userData ? JSON.stringify(userData) : null
@@ -13,7 +11,6 @@ const mockLocalStorage = (userData: object | null) => {
   Storage.prototype.removeItem = jest.fn();
 };
 
-// Helper function to render component with required providers
 const renderWithProviders = () => {
   return render(
     <Provider store={store}>
