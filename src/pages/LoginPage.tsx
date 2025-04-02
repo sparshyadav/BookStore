@@ -124,8 +124,13 @@ function LoginPage() {
                                 <div className="w-[100%] border border-[#b7b6b6]"></div>
                             </div>
                         </div>
-                        <div className="w-full flex justify-center items-center">
-                            <GoogleSignIn />
+                        <div className="w-full flex justify-between">
+                            <button className="w-[45%] h-[40px] bg-[#4266B2] text-white px-4 py-2 rounded-md hover:bg-[#375293] transition duration-300 cursor-pointer">
+                                Facebook
+                            </button>
+                            <button className="w-[45%] h-[40px] bg-[#E4E4E4] text-black px-4 py-2 rounded-md hover:bg-[#CFCFCF] transition duration-300 cursor-pointer">
+                                Google
+                            </button>
                         </div>
 
                     </div>
