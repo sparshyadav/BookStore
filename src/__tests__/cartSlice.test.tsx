@@ -88,7 +88,7 @@ describe("Cart Slice", () => {
         localStorageMock.getItem.mockReturnValue("[]");
     });
 
-    it("should add a new item to the cart", () => {
+    test("should add a new item to the cart", () => {
         store.dispatch(addItemToCart({ product: mockProduct, quantityToAdd: 1 }));
         const state = store.getState().cart;
         expect(state.items).toHaveLength(1);
@@ -99,7 +99,7 @@ describe("Cart Slice", () => {
         expect(localStorageMock.setItem).toHaveBeenCalledWith("cart", JSON.stringify(state.items));
     });
 
-    it("should update quantity of an existing item", () => {
+    test("should update quantity of an existing item", () => {
         store.dispatch(addItemToCart({ product: mockProduct, quantityToAdd: 1 }));
         const itemId = store.getState().cart.items[0]._id;
         store.dispatch(addItemToCart({ product: mockProduct, quantityToAdd: 2 }));
@@ -110,7 +110,7 @@ describe("Cart Slice", () => {
         expect(toast.success).toHaveBeenCalledWith("Updated Test Book quantity to 3");
     });
 
-    it("should update item quantity via updateItemQuantity", () => {
+    test("should update item quantity via updateItemQuantity", () => {
         store.dispatch(addItemToCart({ product: mockProduct, quantityToAdd: 1 }));
         const itemId = store.getState().cart.items[0]._id;
         store.dispatch(updateItemQuantity({ id: itemId, quantityToBuy: 5 }));
@@ -120,14 +120,14 @@ describe("Cart Slice", () => {
         expect(localStorageMock.setItem).toHaveBeenCalled();
     });
 
-    it("should set status to loading when fetching cart items", () => {
+    test("should set status to loading when fetching cart items", () => {
         (getCartItems as jest.Mock).mockReturnValue(new Promise(() => {})); 
         store.dispatch(fetchCartItems() as any); 
         const state = store.getState().cart;
         expect(state.status).toBe("loading");
     });
 
-    it("should fetch cart items successfully", async () => {
+    test("should fetch cart items successfully", async () => {
         (getCartItems as jest.Mock).mockResolvedValue([mockCartItem]);
         await store.dispatch(fetchCartItems() as any); 
         const state = store.getState().cart;
@@ -138,7 +138,7 @@ describe("Cart Slice", () => {
         expect(localStorageMock.setItem).toHaveBeenCalled();
     });
 
-    it("should handle fetch cart items failure", async () => {
+    test("should handle fetch cart items failure", async () => {
         (getCartItems as jest.Mock).mockRejectedValue(new Error("API Error"));
         await store.dispatch(fetchCartItems() as unknown); 
         const state = store.getState().cart;
@@ -146,7 +146,7 @@ describe("Cart Slice", () => {
         expect(state.error).toBe("API Error");
     });
 
-    it("should set status to loading when deleting an item", () => {
+    test("should set status to loading when deleting an item", () => {
         store.dispatch(addItemToCart({ product: mockProduct, quantityToAdd: 1 }));
         const itemId = store.getState().cart.items[0]._id;
         (removeCartItems as jest.Mock).mockReturnValue(new Promise(() => {})); 
@@ -155,7 +155,7 @@ describe("Cart Slice", () => {
         expect(state.status).toBe("loading");
     });
 
-    it("should delete an item from the cart", async () => {
+    test("should delete an item from the cart", async () => {
         store.dispatch(addItemToCart({ product: mockProduct, quantityToAdd: 1 }));
         const itemId = store.getState().cart.items[0]._id;
         (removeCartItems as jest.Mock).mockResolvedValue(200);
@@ -168,7 +168,7 @@ describe("Cart Slice", () => {
         expect(localStorageMock.setItem).toHaveBeenCalled();
     });
 
-    it("should handle delete item failure", async () => {
+    test("should handle delete item failure", async () => {
         store.dispatch(addItemToCart({ product: mockProduct, quantityToAdd: 1 }));
         const itemId = store.getState().cart.items[0]._id;
         (removeCartItems as jest.Mock).mockResolvedValue(400); 
@@ -179,7 +179,7 @@ describe("Cart Slice", () => {
         expect(state.error).toBe("Failed to remove the cart item");
     });
 
-    it("should calculate total count correctly", () => {
+    test("should calculate total count correctly", () => {
         store.dispatch(addItemToCart({ product: mockProduct, quantityToAdd: 1 }));
         store.dispatch(addItemToCart({ product: { ...mockProduct, _id: "456" }, quantityToAdd: 2 }));
         const state = store.getState().cart;

@@ -16,7 +16,7 @@ jest.mock('../components/AddressCart', () => ({ isContinueClicked }: { isContinu
 jest.mock('../components/OrderSummary', () => () => <div data-testid="order-summary">Order Summary</div>);
 
 describe('MyCartPage', () => {
-  it('renders Navbar, MyCartContainer, AddressCart, OrderSummary, and Footer', () => {
+  test('renders Navbar, MyCartContainer, AddressCart, OrderSummary, and Footer', () => {
     render(<MyCartPage />);
 
     expect(screen.getByTestId('navbar')).toBeInTheDocument();
@@ -26,14 +26,14 @@ describe('MyCartPage', () => {
     expect(screen.getByTestId('footer')).toBeInTheDocument();
   });
 
-  it('initializes with isContinueClicked as false and AddressCart closed', () => {
+  test('initializes with isContinueClicked as false and AddressCart closed', () => {
     render(<MyCartPage />);
 
     const addressCart = screen.getByTestId('address-cart');
     expect(addressCart).toHaveTextContent('Closed');
   });
 
-  it('updates isContinueClicked to true when Continue button is clicked in MyCartContainer', () => {
+  test('updates isContinueClicked to true when Continue button is clicked in MyCartContainer', () => {
     render(<MyCartPage />);
 
     const continueButton = screen.getByTestId('continue-btn');
@@ -43,7 +43,7 @@ describe('MyCartPage', () => {
     expect(addressCart).toHaveTextContent('Open');
   });
 
-  it('passes setIsContinueClicked function to MyCartContainer', () => {
+  test('passes setIsContinueClicked function to MyCartContainer', () => {
     render(<MyCartPage />);
 
     const myCartContainer = screen.getByTestId('my-cart-container');
@@ -53,7 +53,7 @@ describe('MyCartPage', () => {
     expect(screen.getByTestId('address-cart')).toHaveTextContent('Open');
   });
 
-  it('passes isContinueClicked prop to AddressCart', () => {
+  test('passes isContinueClicked prop to AddressCart', () => {
     render(<MyCartPage />);
 
     expect(screen.getByTestId('address-cart')).toHaveTextContent('Closed');
@@ -62,7 +62,7 @@ describe('MyCartPage', () => {
     expect(screen.getByTestId('address-cart')).toHaveTextContent('Open');
   });
 
-  it('renders all components within a single div container', () => {
+  test('renders all components within a single div container', () => {
     const { container } = render(<MyCartPage />);
     
     const div = container.querySelector('div');

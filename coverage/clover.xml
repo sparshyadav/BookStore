@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1743567419580" clover="3.2.0">
-  <project timestamp="1743567419581" name="All files">
-    <metrics statements="388" coveredstatements="349" conditionals="142" coveredconditionals="103" methods="102" coveredmethods="91" elements="632" coveredelements="543" complexity="0" loc="388" ncloc="388" packages="4" files="18" classes="18"/>
+<coverage generated="1743570005108" clover="3.2.0">
+  <project timestamp="1743570005108" name="All files">
+    <metrics statements="458" coveredstatements="418" conditionals="146" coveredconditionals="107" methods="116" coveredmethods="105" elements="720" coveredelements="630" complexity="0" loc="458" ncloc="458" packages="4" files="21" classes="21"/>
     <package name="components">
-      <metrics statements="137" coveredstatements="129" conditionals="73" coveredconditionals="49" methods="38" coveredmethods="33"/>
+      <metrics statements="207" coveredstatements="198" conditionals="77" coveredconditionals="53" methods="52" coveredmethods="47"/>
       <file name="AddressCart.tsx" path="C:\My Data\Professional\book-store\src\components\AddressCart.tsx">
         <metrics statements="9" coveredstatements="9" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
         <line num="1" count="1" type="stmt"/>
@@ -89,10 +89,51 @@
         <line num="144" count="26" type="stmt"/>
         <line num="172" count="1" type="stmt"/>
       </file>
+      <file name="CartCounter.tsx" path="C:\My Data\Professional\book-store\src\components\CartCounter.tsx">
+        <metrics statements="30" coveredstatements="30" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="13" count="8" type="stmt"/>
+        <line num="14" count="8" type="stmt"/>
+        <line num="15" count="8" type="stmt"/>
+        <line num="17" count="8" type="stmt"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="19" count="2" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+        <line num="30" count="8" type="stmt"/>
+        <line num="31" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="33" count="2" type="stmt"/>
+        <line num="34" count="2" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="36" count="1" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="39" count="2" type="stmt"/>
+        <line num="40" count="2" type="stmt"/>
+        <line num="43" count="1" type="stmt"/>
+        <line num="47" count="8" type="stmt"/>
+        <line num="68" count="1" type="stmt"/>
+      </file>
       <file name="Footer.tsx" path="C:\My Data\Professional\book-store\src\components\Footer.tsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="2" count="2" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
+      </file>
+      <file name="MyOrderContainer.tsx" path="C:\My Data\Professional\book-store\src\components\MyOrderContainer.tsx">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="23" count="42" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
       </file>
       <file name="Navbar.tsx" path="C:\My Data\Professional\book-store\src\components\Navbar.tsx">
         <metrics statements="17" coveredstatements="17" conditionals="6" coveredconditionals="4" methods="6" coveredmethods="6"/>
@@ -161,6 +202,44 @@
         <line num="59" count="4" type="stmt"/>
         <line num="75" count="4" type="stmt"/>
         <line num="131" count="1" type="stmt"/>
+      </file>
+      <file name="WishlistContainer.tsx" path="C:\My Data\Professional\book-store\src\components\WishlistContainer.tsx">
+        <metrics statements="35" coveredstatements="34" conditionals="2" coveredconditionals="2" methods="9" coveredmethods="9"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="16" count="17" type="stmt"/>
+        <line num="18" count="17" type="stmt"/>
+        <line num="20" count="17" type="stmt"/>
+        <line num="26" count="17" type="stmt"/>
+        <line num="27" count="8" type="stmt"/>
+        <line num="28" count="8" type="stmt"/>
+        <line num="29" count="8" type="stmt"/>
+        <line num="30" count="7" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="36" count="8" type="stmt"/>
+        <line num="39" count="17" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="43" count="2" type="stmt"/>
+        <line num="45" count="1" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="51" count="17" type="stmt"/>
+        <line num="72" count="4" type="stmt"/>
+        <line num="80" count="13" type="stmt"/>
+        <line num="92" count="1" type="stmt"/>
+        <line num="107" count="1" type="stmt"/>
       </file>
     </package>
     <package name="pages">

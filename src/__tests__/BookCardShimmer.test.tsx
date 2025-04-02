@@ -2,34 +2,34 @@ import { render, screen } from '@testing-library/react';
 import BookCardShimmer from '../components/BookCardShimmer'; 
 
 describe('BookCardShimmer', () => {
-  it('renders the outer container', () => {
+  test('renders the outer container', () => {
     render(<BookCardShimmer />);
     expect(screen.getByTestId('shimmer-container')).toBeInTheDocument();
   });
 
-  it('renders the image placeholder section', () => {
+  test('renders the image placeholder section', () => {
     render(<BookCardShimmer />);
     const imageContainer = screen.getByTestId('shimmer-image-container');
     expect(imageContainer).toBeInTheDocument();
     expect(imageContainer.querySelector('[data-testid="shimmer-image"]')).toBeInTheDocument();
   });
 
-  it('renders the content section', () => {
+  test('renders the content section', () => {
     render(<BookCardShimmer />);
     expect(screen.getByTestId('shimmer-content')).toBeInTheDocument();
   });
 
-  it('renders the title placeholder', () => {
+  test('renders the title placeholder', () => {
     render(<BookCardShimmer />);
     expect(screen.getByTestId('shimmer-title')).toBeInTheDocument();
   });
 
-  it('renders the author placeholder', () => {
+  test('renders the author placeholder', () => {
     render(<BookCardShimmer />);
     expect(screen.getByTestId('shimmer-author')).toBeInTheDocument();
   });
 
-  it('renders the rating and quantity placeholders', () => {
+  test('renders the rating and quantity placeholders', () => {
     render(<BookCardShimmer />);
     const ratingContainer = screen.getByTestId('shimmer-rating-container');
     expect(ratingContainer).toBeInTheDocument();
@@ -37,7 +37,7 @@ describe('BookCardShimmer', () => {
     expect(ratingContainer.querySelector('[data-testid="shimmer-quantity"]')).toBeInTheDocument();
   });
 
-  it('renders the price placeholders', () => {
+  test('renders the price placeholders', () => {
     render(<BookCardShimmer />);
     const priceContainer = screen.getByTestId('shimmer-price-container');
     expect(priceContainer).toBeInTheDocument();

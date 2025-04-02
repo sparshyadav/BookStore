@@ -53,13 +53,13 @@ function WishlistContainer() {
             <nav aria-label="breadcrumb" className="w-[68%] h-[75px] flex items-center max-md:w-[90%]">
                 <ol className="flex w-full flex-wrap items-center rounded-md bg-slate-50 px-4 py-2">
                     <li className="flex gap-1 cursor-pointer items-center text-sm text-slate-500 transition-colors duration-300 hover:text-slate-800">
-                        <a href="/">Home</a>
+                        <a data-testid="anchor-home" href="/">Home</a>
                         <span className="pointer-events-none mx-2 text-slate-800 !mr-1">
                             /
                         </span>
                     </li>
                     <li className="flex gap-1 text-black cursor-pointer items-center text-sm transition-colors duration-300 hover:text-slate-800">
-                        <a href="/bookpage">My Wishlist</a>
+                        <a data-testid="anchor-wishlist" href="/bookpage">My Wishlist</a>
                         <span className="pointer-events-none mx-2 text-slate-800">
                             /
                         </span>
