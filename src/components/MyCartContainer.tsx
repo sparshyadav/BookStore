@@ -87,7 +87,7 @@ function MyCartContainer({setIsContinueClicked}: MyCartContainerProps) {
               <span className="pointer-events-none mx-2 text-slate-800 !mr-1"> / </span>
             </li>
             <li className="flex gap-1 text-black cursor-pointer items-center text-sm transition-colors duration-300 hover:text-slate-800">
-              <a href="/bookpage">My Cart</a>
+              <a data-testid="My Cart" href="/bookpage">My Cart</a>
               <span className="pointer-events-none mx-2 text-slate-800"> / </span>
             </li>
           </ol>

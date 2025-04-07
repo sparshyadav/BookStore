@@ -1,13 +1,19 @@
 import { useWindowSize } from 'react-use';
+import { useNavigate } from 'react-router-dom';
 import Confetti from 'react-confetti';
 
 function OrderConfirmContainer() {
+    const navigate=useNavigate();
     const { width, height } = useWindowSize();
     function getRandomSixDigit(): number {
         return Math.floor(Math.random() * 900000) + 100000;
     }
 
-    const number = getRandomSixDigit()
+    const number = getRandomSixDigit();
+
+    const handleNavigate=()=>{
+        navigate('/');
+    }
 
     return (
         <div className='w-full min-h-[85vh] !mt-[60px] flex flex-col justify-center items-center gap-6 p-4'>
@@ -53,7 +59,7 @@ function OrderConfirmContainer() {
                     </div>
                 </div>
             </div>
-            <button className='mb-12 text-white bg-[#3371B5] h-[35px] w-[200px] rounded-md hover:cursor-pointer hover:bg-[#78a1cc] transition-all'>
+            <button onClick={handleNavigate} className='mb-12 text-white bg-[#3371B5] h-[35px] w-[200px] rounded-md hover:cursor-pointer hover:bg-[#78a1cc] transition-all'>
                 Continue Shopping
             </button>
         </div>
