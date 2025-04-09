@@ -5,7 +5,6 @@ import { Input } from "antd";
 import { NavLink, useNavigate } from "react-router-dom";
 import { loginUser } from "../utils/API";
 import { toast } from "react-toastify";
-import GoogleSignIn from "../components/GoogleSignIn";
 
 function LoginPage() {
     const [email, setEmail] = useState("");
