@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import bookImage2 from '../assets/bookCover2.png';
+import bookImage2 from '../assets/book-image-2.png';
 import { Star, Dot, Heart } from 'lucide-react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import FeedbackBookPage from './FeedbackBookPage';
