@@ -43,19 +43,18 @@ function FeedbackBookPage() {
             : JSON.parse(localStorage.getItem("token") || "null").name.slice(0, 1);
     };
 
+    const fetchReviews = async () => {
+        try {
+            if (!bookId) return;
+
+            const response: ResponseType = await getBookReviews(bookId);
+            setReviews(response.result.reverse());
+        } catch (error) {
+            console.error("Error fetching reviews:", error);
+        }
+    };
 
     useEffect(() => {
-        const fetchReviews = async () => {
-            try {
-                if (!bookId) return;
-
-                const response: ResponseType = await getBookReviews(bookId);
-                setReviews(response.result.reverse());
-            } catch (error) {
-                console.error("Error fetching reviews:", error);
-            }
-        };
-
         fetchReviews();
     }, [bookId]);
 
@@ -63,6 +62,7 @@ function FeedbackBookPage() {
         try {
             const response = await addBookReviews(reviewComment, rating, bookId) as { result: Review };
             setReviews((prev) => [response.result, ...prev]);
+            await fetchReviews();
 
             setReviewComment("");
             setRating(0);

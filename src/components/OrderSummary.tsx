@@ -21,10 +21,10 @@ function OrderSummary() {
     );
 
     const orderItems = items.map((book) => ({
-        product_id: book.product_id._id,
-        product_name: book.product_id.bookName,
-        product_quantity: Number(book.quantityToBuy),
-        product_price: Number(book.product_id.discountPrice),
+        product_id: book.product_id?._id,
+        product_name: book.product_id?.bookName,
+        product_quantity: Number(book?.quantityToBuy),
+        product_price: Number(book.product_id?.discountPrice),
     }));
 
     const handleSubmit = async () => {
@@ -39,6 +39,7 @@ function OrderSummary() {
             console.error("Order submission failed: ", error);
         }
     };
+    console.log("BOOKS: ", items);
 
     const [isAccordionOpen, setIsAccordionOpen] = useState(true);
 
@@ -53,7 +54,7 @@ function OrderSummary() {
     ];
 
     const calculateTotal = () => {
-        return items.reduce((total, item) => total + (item.product_id.discountPrice*item.quantityToBuy), 0);
+        return items.reduce((total, item) => total + (item.product_id?.discountPrice*item.quantityToBuy), 0);
     };
 
     return (
@@ -83,13 +84,13 @@ function OrderSummary() {
                                             />
                                             <div className="w-full md:w-[75%] flex flex-col max-[550px]:justify-start">
                                                 <h2 className="text-[18px] text-[#0A0102] !mb-[3px] max-sm:text-[15px]">
-                                                    {book.product_id.bookName}
+                                                    {book.product_id?.bookName}
                                                 </h2>
                                                 <p className="text-[12px] text-[#9D9D9D] !mb-[10px] max-sm:text-[10px]">
-                                                    By {book.product_id.author}
+                                                    By {book.product_id?.author}
                                                 </p>
                                                 <p className="text-[15px] text-[#0A0102] max-sm:text-[12px]">
-                                                    Rs. {book.product_id.discountPrice} x {book.quantityToBuy} = {book.product_id.discountPrice*book.quantityToBuy}
+                                                    Rs. {book.product_id?.discountPrice} x {book.quantityToBuy} = {book.product_id?.discountPrice*book.quantityToBuy}
                                                 </p>
                                             </div>
                                         </div>

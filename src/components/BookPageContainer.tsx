@@ -37,7 +37,7 @@ function BookPageContainer() {
     const dispatch = useDispatch<AppDispatch>();
 
     const { items } = useSelector((state: RootState) => state.cart);
-    const bookInCart = items.find((book) => book.product_id._id === bookId);
+    const bookInCart = items.find((book) => book?.product_id?._id === bookId);
     const bookInCartQuantity = bookInCart?.quantityToBuy || 0;
     const showCounter = bookInCartQuantity > 0;
 
